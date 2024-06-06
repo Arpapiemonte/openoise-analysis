@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# OpeNoise: open source tools for noise pollution data analysis <img src="man/figures/hex-OpeNoise.png" height="200" style="float:right; height:100px;"/>
+# OpeNoise: noise pollution data analysis <img src="man/figures/hex-OpeNoise.png" height="200" style="float:right; height:100px;"/>
 
 <!-- badges: start -->
 
@@ -9,7 +9,7 @@
 status](https://www.r-pkg.org/badges/version/OpeNoise)](https://cran.r-project.org/package=OpeNoise)![](http://cranlogs.r-pkg.org/badges/grand-total/OpeNoise)
 <!-- badges: end -->
 
-## Introdution
+### Introdution
 
 The tutorial explains how to use the OpeNoise library. It works on
 acoustic data acquired with sound level meters instrument. Input dataset
@@ -28,9 +28,9 @@ head(PTFA)[1:3, 1:6]
 #> 4 2022-03-07 10:12:18 44.5       46.0       52.2        51.3        57.2
 ```
 
-## Acoustic summary calculation:
+### Acoustic summary calculation:
 
-### Energetic average
+#### Energetic average
 
 Function calculate energetic average of vector of values in dB.
 *RoundTo* function round value at 0.5.
@@ -43,7 +43,7 @@ x <- energetic.mean(PTFA$LAeq)
 RoundTo(x, 0.5)
 ```
 
-### Energetic average weighted
+#### Energetic average weighted
 
 Function calculate energetic average weighted of vector’s values in dB
 respect to vector’s time like string in format “HH:MM:SS”
@@ -52,7 +52,7 @@ respect to vector’s time like string in format “HH:MM:SS”
 energetic_w.mean(c(55.2, 88.6), c("03:22:52", "08:55:33"))
 ```
 
-### Acoustic percentile
+#### Acoustic percentile
 
 Function return reverse percentile of un vector’s values.
 
@@ -62,7 +62,7 @@ AcuPercentile(PTFA$LAeq)
 RoundTo(AcuPercentile(PTFA$LAeq), 0.5)
 ```
 
-### Day and night acoustic percentiles calculate
+#### Day and night acoustic percentiles calculate
 
 ``` r
 data("exampleHourlyData")
@@ -74,7 +74,7 @@ AcuDNPercentile(df = exampleHourlyData,
                 period = "night")
 ```
 
-### Energetic hourly average
+#### Energetic hourly average
 
 Function return energetic average with hourly aggregation.
 
@@ -82,7 +82,7 @@ Function return energetic average with hourly aggregation.
 HourlyEmean(PTFA, "LAeq", timeZone = "Europe/Rome")
 ```
 
-### Time decomposition
+#### Time decomposition
 
 function retun seconds from hour, minutes and seconds.
 
@@ -93,7 +93,7 @@ second <- 50
 deco.time(hour, minute, second)
 ```
 
-### holidays date (Gregorian calendar)
+#### holidays date (Gregorian calendar)
 
 This is simple function using Gauss’algorithm to return holiday date
 respect Gregorian calendar.
@@ -102,7 +102,7 @@ respect Gregorian calendar.
 HolidaysDate(2022)
 ```
 
-### Average day/night period (06:00/21:00 - 22:00/05:00)
+#### Average day/night period (06:00/21:00 - 22:00/05:00)
 
 Function return energetic average or simple average with aggregation day
 (06:00/21:00) or night (22:00/05:00).
@@ -121,7 +121,7 @@ df_day <- avr.day.night(exampleHourlyData, variable = "leq", period = "day",
 head(df_day, 5)
 ```
 
-### Lden calculation
+#### Lden calculation
 
 This function return energetic average aggregate:
 
@@ -141,7 +141,7 @@ LdenCalculator(dataframe = exampleHourlyData, variable = "leq", type = "daily")
 LdenCalculator(dataframe = exampleHourlyData, variable = "leq", type = "total")
 ```
 
-### dbsum
+#### dbsum
 
 Function calculate energetic sum or difference of values
 
@@ -152,7 +152,7 @@ dbsum(x = c(55 , 66), y = c(45, 50), operator = 1)
 dbsum(x = c(55 , 66), y = c(70, 68), operator = -1)
 ```
 
-### SELcalc
+#### SELcalc
 
 Function calculate SEL (single envent level)
 
@@ -160,7 +160,7 @@ Function calculate SEL (single envent level)
 SELcalc(x = 66.8, t = 938)
 ```
 
-## Plot functions (time history and Running Leq, spectrogram, quantile plot)
+### Plot functions (time history and Running Leq, spectrogram, quantile plot)
 
 ``` r
 PlotNoiseTimeHistory(df = PTFA, mp = "PTFA", y_lim = c(40, 60))
@@ -203,7 +203,7 @@ AcousticQuantilePlot(df = datasetH, Cols =c(3:38), Quantile =0.95,
 
 <img src="man/figures/plot_image/README-AcousticQuantilePlot-1.png" width="100%" />
 
-## Search tone
+### Search tone
 
 This function search tonal components in acoustic measure
 
@@ -213,7 +213,7 @@ search.tone(PTFA[, c(3:38)], statistic = energetic.mean, plot.tone = T)
 
 <img src="man/figures/plot_image/README-search_tone-1.png" width="100%" />
 
-## Impulsive finder
+### Impulsive finder
 
 This function search impulsive events in acoustic measure
 
@@ -234,7 +234,7 @@ results$dfPeaks
 #> 10 86.7  939       936      959 2022-05-06 14:27:48    y    5
 ```
 
-### Transform dataset from 100 ms data acquisition to 1 s data acquisition
+#### Transform dataset from 100 ms data acquisition to 1 s data acquisition
 
 ``` r
 data("dataset_impulsive2")
@@ -255,7 +255,7 @@ head(dfT, 3)[, 1:5]
 #> 3 2022-05-06 14:26:14.8 37.0     28.2     37.1      35.2
 ```
 
-## Calculation of the intrusiveness index
+### Calculation of the intrusiveness index
 
 ``` r
 library(OpeNoise)

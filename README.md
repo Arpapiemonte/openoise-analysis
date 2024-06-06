@@ -6,12 +6,23 @@
 <!-- badges: start -->
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/OpeNoise)](https://cran.r-project.org/package=OpeNoise)![](http://cranlogs.r-pkg.org/badges/grand-total/OpeNoise)
+status](https://www.r-pkg.org/badges/version/OpeNoise)](https://cran.r-project.org/package=OpeNoise)
+![](http://cranlogs.r-pkg.org/badges/grand-total/OpeNoise)
 <!-- badges: end -->
+
+### Installation
+
+The development version can be installed from GitHub. Installation of
+`OpeNoise` from GitHub is easy using the `devtools` package.
+
+``` r
+# install.packages("devtools")
+devtools::install_github("Arpapiemonte/openoise-analysis")
+```
 
 ### Introdution
 
-The tutorial explains how to use the OpeNoise library. It works on
+This tutorial explains how to use the OpeNoise library. It works on
 acoustic data acquired with sound level meters instrument. Input dataset
 format is showed in internal examples that you can access them with the
 *data()* function.

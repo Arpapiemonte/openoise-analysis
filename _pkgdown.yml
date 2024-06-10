@@ -1,4 +1,13 @@
 url: ~
 template:
   bootstrap: 5
-
+  bootswatch: lumen
+  pkgdown-nav-height: 100px
+navbar:
+  title: OpeNoise
+  type: default
+  left:
+  - text: Functions
+    href: reference/index.html
+  - text: News
+    href: news/index.html

@@ -48,10 +48,15 @@ Function calculate energetic average of vector of values in dB.
 
 ``` r
 energetic.mean(PTFA$LAeq)
+#> [1] 45.7
+```
+
+``` r
 
 x <- energetic.mean(PTFA$LAeq)
 
 RoundTo(x, 0.5)
+#> [1] 45.5
 ```
 
 #### Energetic average weighted
@@ -61,6 +66,7 @@ respect to vector’s time like string in format “HH:MM:SS”
 
 ``` r
 energetic_w.mean(c(55.2, 88.6), c("03:22:52", "08:55:33"))
+#> [1] 87.2
 ```
 
 #### Acoustic percentile
@@ -69,8 +75,15 @@ Function return reverse percentile of un vector’s values.
 
 ``` r
 AcuPercentile(PTFA$LAeq)
+#>     L1     L5    L10    L50    L90    L95    L99 
+#> 53.747 48.600 47.200 44.400 43.100 43.000 42.700
+```
+
+``` r
 
 RoundTo(AcuPercentile(PTFA$LAeq), 0.5)
+#>   L1   L5  L10  L50  L90  L95  L99 
+#> 53.5 48.5 47.0 44.5 43.0 43.0 42.5
 ```
 
 #### Day and night acoustic percentiles calculate
@@ -82,7 +95,26 @@ AcuDNPercentile(df = exampleHourlyData,
                 parameter = "leq",
                 from = "5",
                 to = "22",
-                period = "night")
+                period = "night")[1:5]
+#> [[1]]
+#>     L1     L5    L10    L50    L90    L95    L99 
+#> 72.767 72.235 70.940 69.550 51.950 51.420 50.204 
+#> 
+#> [[2]]
+#>     L1     L5    L10    L50    L90    L95    L99 
+#> 71.448 70.840 70.620 69.850 50.750 48.425 47.285 
+#> 
+#> [[3]]
+#>     L1     L5    L10    L50    L90    L95    L99 
+#> 71.843 71.615 71.060 69.550 52.250 50.770 48.794 
+#> 
+#> [[4]]
+#>     L1     L5    L10    L50    L90    L95    L99 
+#> 72.656 72.080 71.280 70.000 52.560 51.350 49.550 
+#> 
+#> [[5]]
+#>     L1     L5    L10    L50    L90    L95    L99 
+#> 70.770 70.650 70.500 69.600 51.450 49.575 48.795
 ```
 
 #### Energetic hourly average
@@ -91,6 +123,8 @@ Function return energetic average with hourly aggregation.
 
 ``` r
 HourlyEmean(PTFA, "LAeq", timeZone = "Europe/Rome")
+#>            date LAeq
+#> 1 2022-03-07 10 45.7
 ```
 
 #### Time decomposition
@@ -102,21 +136,25 @@ hour <- 5
 minute <- 25
 second <- 50
 deco.time(hour, minute, second)
+#> [1] "Time decomposition from hours, minutes and seconds to seconds:"
+#> [1] 19550
 ```
 
 #### holidays date (Gregorian calendar)
 
-This is simple function using Gauss’algorithm to return holiday date
-respect Gregorian calendar.
+This is simple function using Gauss’algorithm to return holiday date in
+according of Gregorian calendar.
 
 ``` r
-HolidaysDate(2022)
+HolidaysDate(2024)
+#> [1] "2024-01-01" "2024-01-06" "2024-04-25" "2024-05-01" "2024-06-02"
+#> [6] "2024-08-15" "2024-11-01" "2024-03-31" "2024-04-01"
 ```
 
-#### Average day/night period (06:00/21:00 - 22:00/05:00)
+#### Average day/night period (06:00/22:00 - 22:00/06:00)
 
 Function return energetic average or simple average with aggregation day
-(06:00/21:00) or night (22:00/05:00).
+(06:00/22:00) or night (22:00/06:00).
 
 ``` r
 data("exampleHourlyData")
@@ -125,18 +163,33 @@ df_night <- avr.day.night(exampleHourlyData, variable = "leq", period = "night",
               stat = "e_mean")
 
 head(df_night, 5)
+#>         DATA MEAN  MIN  MAX
+#> 1 2020-12-11 56.1 46.9 60.3
+#> 2 2020-12-12 54.9 46.5 60.0
+#> 3 2020-12-13 56.5 46.3 61.5
+#> 4 2020-12-14 56.5 48.4 61.3
+#> 5 2020-12-15 56.9 48.6 62.4
+```
+
+``` r
 
 df_day <- avr.day.night(exampleHourlyData, variable = "leq", period = "day", 
               stat = "e_mean")
 
 head(df_day, 5)
+#>         DATA MEAN  MIN  MAX
+#> 1 2020-12-11 69.9 64.9 72.3
+#> 2 2020-12-12 69.4 63.4 72.6
+#> 3 2020-12-13 69.0 60.2 72.1
+#> 4 2020-12-14 69.6 64.1 73.2
+#> 5 2020-12-15 69.7 64.2 72.9
 ```
 
 #### Lden calculation
 
 This function return energetic average aggregate:
 
-- *D_acu* (day 06:00/21:00)
+- *D_acu* (day 06:00/22:00)
 - *D* (day 06:00/20:00)
 - *E* (Evening 20:00/22:00)
 - *N* (Night 22:00/06:00)
@@ -148,8 +201,29 @@ This function return energetic average aggregate:
 data("exampleHourlyData")
 
 LdenCalculator(dataframe = exampleHourlyData, variable = "leq", type = "daily")
+#> # A tibble: 81 × 6
+#>    date       D_acu     D     E     N  Lden
+#>    <fct>      <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1 2020-12-11  69.9  70.4  66    NA    NA  
+#>  2 2020-12-12  69.4  69.7  65.6  56.1  68.9
+#>  3 2020-12-13  69    69.3  65.4  54.9  68.4
+#>  4 2020-12-14  69.6  70    64.9  56.5  69.1
+#>  5 2020-12-15  69.7  70.1  65.1  56.5  69.2
+#>  6 2020-12-16  70.3  70.7  65.4  56.9  69.7
+#>  7 2020-12-17  70.1  70.5  65.9  57.4  69.7
+#>  8 2020-12-18  69.6  69.8  66.7  57.2  69.3
+#>  9 2020-12-19  69.1  69.4  66.1  56.6  68.9
+#> 10 2020-12-20  69.2  69.5  66.5  54.7  68.7
+#> # ℹ 71 more rows
+```
+
+``` r
 
 LdenCalculator(dataframe = exampleHourlyData, variable = "leq", type = "total")
+#> # A tibble: 1 × 4
+#>       D     E     N  Lden
+#>   <dbl> <dbl> <dbl> <dbl>
+#> 1  69.8  66.3  57.6  69.4
 ```
 
 #### dbsum
@@ -158,17 +232,27 @@ Function calculate energetic sum or difference of values
 
 ``` r
 dbsum(x = 55, y = 33, operator = 1)
-dbsum(x = c(55 , 66), y = c(45, 50), operator = 1)
+#> [1] 55.02732
+```
 
-dbsum(x = c(55 , 66), y = c(70, 68), operator = -1)
+``` r
+dbsum(x = c(55 , 66), y = c(45, 50), operator = 1)
+#> [1] 55.41393 66.10774
+```
+
+``` r
+
+dbsum(x = c(70 , 68), y = c(55, 66), operator = -1)
+#> [1] 69.86045 63.67077
 ```
 
 #### SELcalc
 
-Function calculate SEL (single envent level)
+Function calculate SEL (single event level)
 
 ``` r
 SELcalc(x = 66.8, t = 938)
+#> [1] 96.52203
 ```
 
 ### Plot functions (time history and Running Leq, spectrogram, quantile plot)
@@ -216,7 +300,8 @@ AcousticQuantilePlot(df = datasetH, Cols =c(3:38), Quantile =0.95,
 
 ### Search tone
 
-This function search tonal components in acoustic measure
+This function search tonal components in acoustic measure in according
+of Italian law.
 
 ``` r
 search.tone(PTFA[, c(3:38)], statistic = energetic.mean, plot.tone = T)
@@ -244,6 +329,12 @@ results$dfPeaks
 #> 9  88.8 2198      2197     2218 2022-05-06 14:29:54    y    4
 #> 10 86.7  939       936      959 2022-05-06 14:27:48    y    5
 ```
+
+``` r
+results$Plot
+```
+
+<img src="man/figures/plot_image/README-ImpulsiveFinder-1.png" width="100%" />
 
 #### Transform dataset from 100 ms data acquisition to 1 s data acquisition
 
@@ -284,9 +375,7 @@ df_Imp_sec$date <- ymd_hms(df_Imp_sec$date, tz = "Europe/Rome")
 freqDF <- df_Imp_sec[, grep("LZeq\\.", names(df_Imp_sec))]
 
 ################################################################################
-
 #                  INTRUSIVENESS INDEX CALCULATION FUNCTION
-
 ################################################################################
 dfa <- freqDF # Environmental dataset simulation
 dfr <- freqDF
@@ -298,4 +387,5 @@ BW <- dfBW$BW # bandwidth
 
 # application of the function
 IntrusiveIndex(dfa, dfr, BW)
+#> [1] "10 Intrusivity Index is negligible"
 ```

@@ -106,79 +106,126 @@
 <p>Function calculate energetic average of vector of values in dB. <em>RoundTo</em> function round value at 0.5.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/energetic.mean.html">energetic.mean</a></span><span class="op">(</span><span class="va">PTFA</span><span class="op">$</span><span class="va">LAeq</span><span class="op">)</span></span>
-<span></span>
+<span><span class="co">#&gt; [1] 45.7</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/energetic.mean.html">energetic.mean</a></span><span class="op">(</span><span class="va">PTFA</span><span class="op">$</span><span class="va">LAeq</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/RoundTo.html">RoundTo</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/RoundTo.html">RoundTo</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 45.5</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="energetic-average-weighted">Energetic average weighted<a class="anchor" aria-label="anchor" href="#energetic-average-weighted"></a>
 </h4>
 <p>Function calculate energetic average weighted of vector’s values in dB respect to vector’s time like string in format “HH:MM:SS”</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/energetic_w.mean.html">energetic_w.mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">55.2</span>, <span class="fl">88.6</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"03:22:52"</span>, <span class="st">"08:55:33"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/energetic_w.mean.html">energetic_w.mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">55.2</span>, <span class="fl">88.6</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"03:22:52"</span>, <span class="st">"08:55:33"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 87.2</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="acoustic-percentile">Acoustic percentile<a class="anchor" aria-label="anchor" href="#acoustic-percentile"></a>
 </h4>
 <p>Function return reverse percentile of un vector’s values.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/AcuPercentile.html">AcuPercentile</a></span><span class="op">(</span><span class="va">PTFA</span><span class="op">$</span><span class="va">LAeq</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/RoundTo.html">RoundTo</a></span><span class="op">(</span><span class="fu"><a href="reference/AcuPercentile.html">AcuPercentile</a></span><span class="op">(</span><span class="va">PTFA</span><span class="op">$</span><span class="va">LAeq</span><span class="op">)</span>, <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co">#&gt;     L1     L5    L10    L50    L90    L95    L99 </span></span>
+<span><span class="co">#&gt; 53.747 48.600 47.200 44.400 43.100 43.000 42.700</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="reference/RoundTo.html">RoundTo</a></span><span class="op">(</span><span class="fu"><a href="reference/AcuPercentile.html">AcuPercentile</a></span><span class="op">(</span><span class="va">PTFA</span><span class="op">$</span><span class="va">LAeq</span><span class="op">)</span>, <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   L1   L5  L10  L50  L90  L95  L99 </span></span>
+<span><span class="co">#&gt; 53.5 48.5 47.0 44.5 43.0 43.0 42.5</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="day-and-night-acoustic-percentiles-calculate">Day and night acoustic percentiles calculate<a class="anchor" aria-label="anchor" href="#day-and-night-acoustic-percentiles-calculate"></a>
 </h4>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"exampleHourlyData"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/AcuDNPercentile.html">AcuDNPercentile</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">exampleHourlyData</span>,</span>
 <span>                parameter <span class="op">=</span> <span class="st">"leq"</span>,</span>
 <span>                from <span class="op">=</span> <span class="st">"5"</span>,</span>
 <span>                to <span class="op">=</span> <span class="st">"22"</span>,</span>
-<span>                period <span class="op">=</span> <span class="st">"night"</span><span class="op">)</span></span></code></pre></div>
+<span>                period <span class="op">=</span> <span class="st">"night"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt;     L1     L5    L10    L50    L90    L95    L99 </span></span>
+<span><span class="co">#&gt; 72.767 72.235 70.940 69.550 51.950 51.420 50.204 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt;     L1     L5    L10    L50    L90    L95    L99 </span></span>
+<span><span class="co">#&gt; 71.448 70.840 70.620 69.850 50.750 48.425 47.285 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt;     L1     L5    L10    L50    L90    L95    L99 </span></span>
+<span><span class="co">#&gt; 71.843 71.615 71.060 69.550 52.250 50.770 48.794 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt;     L1     L5    L10    L50    L90    L95    L99 </span></span>
+<span><span class="co">#&gt; 72.656 72.080 71.280 70.000 52.560 51.350 49.550 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt;     L1     L5    L10    L50    L90    L95    L99 </span></span>
+<span><span class="co">#&gt; 70.770 70.650 70.500 69.600 51.450 49.575 48.795</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="energetic-hourly-average">Energetic hourly average<a class="anchor" aria-label="anchor" href="#energetic-hourly-average"></a>
 </h4>
 <p>Function return energetic average with hourly aggregation.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/HourlyEmean.html">HourlyEmean</a></span><span class="op">(</span><span class="va">PTFA</span>, <span class="st">"LAeq"</span>, timeZone <span class="op">=</span> <span class="st">"Europe/Rome"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/HourlyEmean.html">HourlyEmean</a></span><span class="op">(</span><span class="va">PTFA</span>, <span class="st">"LAeq"</span>, timeZone <span class="op">=</span> <span class="st">"Europe/Rome"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;            date LAeq</span></span>
+<span><span class="co">#&gt; 1 2022-03-07 10 45.7</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="time-decomposition">Time decomposition<a class="anchor" aria-label="anchor" href="#time-decomposition"></a>
 </h4>
 <p>function retun seconds from hour, minutes and seconds.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hour</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
 <span><span class="va">minute</span> <span class="op">&lt;-</span> <span class="fl">25</span></span>
 <span><span class="va">second</span> <span class="op">&lt;-</span> <span class="fl">50</span></span>
-<span><span class="fu"><a href="reference/deco.time.html">deco.time</a></span><span class="op">(</span><span class="va">hour</span>, <span class="va">minute</span>, <span class="va">second</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/deco.time.html">deco.time</a></span><span class="op">(</span><span class="va">hour</span>, <span class="va">minute</span>, <span class="va">second</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Time decomposition from hours, minutes and seconds to seconds:"</span></span>
+<span><span class="co">#&gt; [1] 19550</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="holidays-date-gregorian-calendar">holidays date (Gregorian calendar)<a class="anchor" aria-label="anchor" href="#holidays-date-gregorian-calendar"></a>
 </h4>
-<p>This is simple function using Gauss’algorithm to return holiday date respect Gregorian calendar.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/HolidaysDate.html">HolidaysDate</a></span><span class="op">(</span><span class="fl">2022</span><span class="op">)</span></span></code></pre></div>
+<p>This is simple function using Gauss’algorithm to return holiday date in according of Gregorian calendar.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/HolidaysDate.html">HolidaysDate</a></span><span class="op">(</span><span class="fl">2024</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "2024-01-01" "2024-01-06" "2024-04-25" "2024-05-01" "2024-06-02"</span></span>
+<span><span class="co">#&gt; [6] "2024-08-15" "2024-11-01" "2024-03-31" "2024-04-01"</span></span></code></pre></div>
 </div>
 <div class="section level4">
-<h4 id="average-daynight-period-06002100---22000500">Average day/night period (06:00/21:00 - 22:00/05:00)<a class="anchor" aria-label="anchor" href="#average-daynight-period-06002100---22000500"></a>
+<h4 id="average-daynight-period-06002200---22000600">Average day/night period (06:00/22:00 - 22:00/06:00)<a class="anchor" aria-label="anchor" href="#average-daynight-period-06002200---22000600"></a>
 </h4>
-<p>Function return energetic average or simple average with aggregation day (06:00/21:00) or night (22:00/05:00).</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<p>Function return energetic average or simple average with aggregation day (06:00/22:00) or night (22:00/06:00).</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"exampleHourlyData"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df_night</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/avr.day.night.html">avr.day.night</a></span><span class="op">(</span><span class="va">exampleHourlyData</span>, variable <span class="op">=</span> <span class="st">"leq"</span>, period <span class="op">=</span> <span class="st">"night"</span>, </span>
 <span>              stat <span class="op">=</span> <span class="st">"e_mean"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_night</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span></span>
+<span><span class="co">#&gt;         DATA MEAN  MIN  MAX</span></span>
+<span><span class="co">#&gt; 1 2020-12-11 56.1 46.9 60.3</span></span>
+<span><span class="co">#&gt; 2 2020-12-12 54.9 46.5 60.0</span></span>
+<span><span class="co">#&gt; 3 2020-12-13 56.5 46.3 61.5</span></span>
+<span><span class="co">#&gt; 4 2020-12-14 56.5 48.4 61.3</span></span>
+<span><span class="co">#&gt; 5 2020-12-15 56.9 48.6 62.4</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="va">df_day</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/avr.day.night.html">avr.day.night</a></span><span class="op">(</span><span class="va">exampleHourlyData</span>, variable <span class="op">=</span> <span class="st">"leq"</span>, period <span class="op">=</span> <span class="st">"day"</span>, </span>
 <span>              stat <span class="op">=</span> <span class="st">"e_mean"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_day</span>, <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_day</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         DATA MEAN  MIN  MAX</span></span>
+<span><span class="co">#&gt; 1 2020-12-11 69.9 64.9 72.3</span></span>
+<span><span class="co">#&gt; 2 2020-12-12 69.4 63.4 72.6</span></span>
+<span><span class="co">#&gt; 3 2020-12-13 69.0 60.2 72.1</span></span>
+<span><span class="co">#&gt; 4 2020-12-14 69.6 64.1 73.2</span></span>
+<span><span class="co">#&gt; 5 2020-12-15 69.7 64.2 72.9</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="lden-calculation">Lden calculation<a class="anchor" aria-label="anchor" href="#lden-calculation"></a>
@@ -186,7 +233,7 @@
 <p>This function return energetic average aggregate:</p>
 <ul>
 <li>
-<em>D_acu</em> (day 06:00/21:00)</li>
+<em>D_acu</em> (day 06:00/22:00)</li>
 <li>
 <em>D</em> (day 06:00/20:00)</li>
 <li>
@@ -196,39 +243,64 @@
 <li>
 <em>Lden</em> (is the level of noise day-evening-night and is an indicator correlated with the global nuisance produced by noise over the overall 24 hours)</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"exampleHourlyData"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/LdenCalculator.html">LdenCalculator</a></span><span class="op">(</span>dataframe <span class="op">=</span> <span class="va">exampleHourlyData</span>, variable <span class="op">=</span> <span class="st">"leq"</span>, type <span class="op">=</span> <span class="st">"daily"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/LdenCalculator.html">LdenCalculator</a></span><span class="op">(</span>dataframe <span class="op">=</span> <span class="va">exampleHourlyData</span>, variable <span class="op">=</span> <span class="st">"leq"</span>, type <span class="op">=</span> <span class="st">"total"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co">#&gt; # A tibble: 81 × 6</span></span>
+<span><span class="co">#&gt;    date       D_acu     D     E     N  Lden</span></span>
+<span><span class="co">#&gt;    &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 2020-12-11  69.9  70.4  66    NA    NA  </span></span>
+<span><span class="co">#&gt;  2 2020-12-12  69.4  69.7  65.6  56.1  68.9</span></span>
+<span><span class="co">#&gt;  3 2020-12-13  69    69.3  65.4  54.9  68.4</span></span>
+<span><span class="co">#&gt;  4 2020-12-14  69.6  70    64.9  56.5  69.1</span></span>
+<span><span class="co">#&gt;  5 2020-12-15  69.7  70.1  65.1  56.5  69.2</span></span>
+<span><span class="co">#&gt;  6 2020-12-16  70.3  70.7  65.4  56.9  69.7</span></span>
+<span><span class="co">#&gt;  7 2020-12-17  70.1  70.5  65.9  57.4  69.7</span></span>
+<span><span class="co">#&gt;  8 2020-12-18  69.6  69.8  66.7  57.2  69.3</span></span>
+<span><span class="co">#&gt;  9 2020-12-19  69.1  69.4  66.1  56.6  68.9</span></span>
+<span><span class="co">#&gt; 10 2020-12-20  69.2  69.5  66.5  54.7  68.7</span></span>
+<span><span class="co">#&gt; # ℹ 71 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="reference/LdenCalculator.html">LdenCalculator</a></span><span class="op">(</span>dataframe <span class="op">=</span> <span class="va">exampleHourlyData</span>, variable <span class="op">=</span> <span class="st">"leq"</span>, type <span class="op">=</span> <span class="st">"total"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 4</span></span>
+<span><span class="co">#&gt;       D     E     N  Lden</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  69.8  66.3  57.6  69.4</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="dbsum">dbsum<a class="anchor" aria-label="anchor" href="#dbsum"></a>
 </h4>
 <p>Function calculate energetic sum or difference of values</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/dbsum.html">dbsum</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">55</span>, y <span class="op">=</span> <span class="fl">33</span>, operator <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/dbsum.html">dbsum</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">55</span> , <span class="fl">66</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">45</span>, <span class="fl">50</span><span class="op">)</span>, operator <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/dbsum.html">dbsum</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">55</span> , <span class="fl">66</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">70</span>, <span class="fl">68</span><span class="op">)</span>, operator <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 55.02732</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dbsum.html">dbsum</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">55</span> , <span class="fl">66</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">45</span>, <span class="fl">50</span><span class="op">)</span>, operator <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 55.41393 66.10774</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="reference/dbsum.html">dbsum</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">70</span> , <span class="fl">68</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">55</span>, <span class="fl">66</span><span class="op">)</span>, operator <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 69.86045 63.67077</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="selcalc">SELcalc<a class="anchor" aria-label="anchor" href="#selcalc"></a>
 </h4>
-<p>Function calculate SEL (single envent level)</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/SELcalc.html">SELcalc</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">66.8</span>, t <span class="op">=</span> <span class="fl">938</span><span class="op">)</span></span></code></pre></div>
+<p>Function calculate SEL (single event level)</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/SELcalc.html">SELcalc</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">66.8</span>, t <span class="op">=</span> <span class="fl">938</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 96.52203</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
 <h3 id="plot-functions-time-history-and-running-leq-spectrogram-quantile-plot">Plot functions (time history and Running Leq, spectrogram, quantile plot)<a class="anchor" aria-label="anchor" href="#plot-functions-time-history-and-running-leq-spectrogram-quantile-plot"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/PlotNoiseTimeHistory.html">PlotNoiseTimeHistory</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">PTFA</span>, mp <span class="op">=</span> <span class="st">"PTFA"</span>, y_lim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">60</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/plot_image/README-TH-1.png" width="100%"></p>
 <p><em>PlotNoiseTHcompare</em> function shows Leq’s time history with frequency components</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/PlotNoiseTHcompare.html">PlotNoiseTHcompare</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">PTFA</span>, </span>
 <span>                   variable <span class="op">=</span> <span class="st">"LAeq"</span>, </span>
 <span>                   listvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LZFmin.100"</span>,</span>
@@ -236,11 +308,11 @@
 <span>                   mp <span class="op">=</span> <span class="st">"PTFA"</span>, </span>
 <span>                   runleq <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/plot_image/README-TH_compare-1.png" width="100%"></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/PlotSpectrogram.html">PlotSpectrogram</a></span><span class="op">(</span><span class="va">PTFA</span>, coLs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">38</span><span class="op">)</span>, plot_title <span class="op">=</span> <span class="st">"Spectrogram"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/plot_image/README-spectrogram-1.png" width="100%"></p>
 <p><em>AcousticQuantilePlot</em> function plot acoustic quantile aggregate by hour</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org" class="external-link">lubridate</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">datasetI</span> <span class="op">&lt;-</span> <span class="va">dataset_impulsive1</span></span>
@@ -254,8 +326,8 @@
 <div class="section level3">
 <h3 id="search-tone">Search tone<a class="anchor" aria-label="anchor" href="#search-tone"></a>
 </h3>
-<p>This function search tonal components in acoustic measure</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<p>This function search tonal components in acoustic measure in according of Italian law.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/search.tone.html">search.tone</a></span><span class="op">(</span><span class="va">PTFA</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">38</span><span class="op">)</span><span class="op">]</span>, statistic <span class="op">=</span> <span class="va">energetic.mean</span>, plot.tone <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/plot_image/README-search_tone-1.png" width="100%"></p>
 </div>
@@ -263,7 +335,7 @@
 <h3 id="impulsive-finder">Impulsive finder<a class="anchor" aria-label="anchor" href="#impulsive-finder"></a>
 </h3>
 <p>This function search impulsive events in acoustic measure</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"dataset_impulsive2"</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/searchImpulse.html">searchImpulse</a></span><span class="op">(</span><span class="va">dataset_impulsive2</span><span class="op">)</span></span>
 <span><span class="va">results</span><span class="op">$</span><span class="va">dfPeaks</span></span>
@@ -278,17 +350,20 @@
 <span><span class="co">#&gt; 8  90.2 1389      1387     1410 2022-05-06 14:28:33    y    5</span></span>
 <span><span class="co">#&gt; 9  88.8 2198      2197     2218 2022-05-06 14:29:54    y    4</span></span>
 <span><span class="co">#&gt; 10 86.7  939       936      959 2022-05-06 14:27:48    y    5</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">results</span><span class="op">$</span><span class="va">Plot</span></span></code></pre></div>
+<p><img src="reference/figures/plot_image/README-ImpulsiveFinder-1.png" width="100%"></p>
 <div class="section level4">
 <h4 id="transform-dataset-from-100-ms-data-acquisition-to-1-s-data-acquisition">Transform dataset from 100 ms data acquisition to 1 s data acquisition<a class="anchor" aria-label="anchor" href="#transform-dataset-from-100-ms-data-acquisition-to-1-s-data-acquisition"></a>
 </h4>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"dataset_impulsive2"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dataset_impulsive2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
 <span><span class="co">#&gt;                      date LAeq LASmax  LAF LAFmax</span></span>
 <span><span class="co">#&gt; 2 2022-05-06 14:26:14.600 34.8   40.4 34.5   34.8</span></span>
 <span><span class="co">#&gt; 3 2022-05-06 14:26:14.700 35.0   40.1 34.6   35.1</span></span>
 <span><span class="co">#&gt; 4 2022-05-06 14:26:14.800 37.0   39.8 35.7   36.2</span></span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dfT</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dfImpulsiveTrasform.html">dfImpulsiveTrasform</a></span><span class="op">(</span>dfImpulsive <span class="op">=</span> <span class="va">dataset_impulsive2</span>, </span>
 <span>                           statistic <span class="op">=</span> <span class="va">energetic.mean</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dfT</span>, <span class="fl">3</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
@@ -301,7 +376,7 @@
 <div class="section level3">
 <h3 id="calculation-of-the-intrusiveness-index">Calculation of the intrusiveness index<a class="anchor" aria-label="anchor" href="#calculation-of-the-intrusiveness-index"></a>
 </h3>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Arpapiemonte/openoise-analysis" class="external-link">OpeNoise</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org" class="external-link">lubridate</a></span><span class="op">)</span></span>
 <span></span>
@@ -317,9 +392,7 @@
 <span><span class="va">freqDF</span> <span class="op">&lt;-</span> <span class="va">df_Imp_sec</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"LZeq\\."</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_Imp_sec</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co">################################################################################</span></span>
-<span></span>
 <span><span class="co">#                  INTRUSIVENESS INDEX CALCULATION FUNCTION</span></span>
-<span></span>
 <span><span class="co">################################################################################</span></span>
 <span><span class="va">dfa</span> <span class="op">&lt;-</span> <span class="va">freqDF</span> <span class="co"># Environmental dataset simulation</span></span>
 <span><span class="va">dfr</span> <span class="op">&lt;-</span> <span class="va">freqDF</span></span>
@@ -330,7 +403,8 @@
 <span><span class="va">BW</span> <span class="op">&lt;-</span> <span class="va">dfBW</span><span class="op">$</span><span class="va">BW</span> <span class="co"># bandwidth</span></span>
 <span></span>
 <span><span class="co"># application of the function</span></span>
-<span><span class="fu"><a href="reference/IntrusiveIndex.html">IntrusiveIndex</a></span><span class="op">(</span><span class="va">dfa</span>, <span class="va">dfr</span>, <span class="va">BW</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/IntrusiveIndex.html">IntrusiveIndex</a></span><span class="op">(</span><span class="va">dfa</span>, <span class="va">dfr</span>, <span class="va">BW</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "10 Intrusivity Index is negligible"</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

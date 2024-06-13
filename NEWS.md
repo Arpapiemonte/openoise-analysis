@@ -1,7 +1,11 @@
-# OpeNoise (development version) 
+# OpeNoise 0.2-17 (development version) 
 
 ### New features
 * add new documentations
+* add new examples
+
+### Bug fixed
+* Fix some bugs in PlotNoiseTimeHistory function
 
 # OpeNoise 0.2-16
 

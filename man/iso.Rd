@@ -3,9 +3,9 @@
 \docType{data}
 \name{iso}
 \alias{iso}
-\title{Parameters table of isophonic curve A (ISO 226:1987 “Acoustics -- Normal equal-loudness-level contours”)}
+\title{Parameters table of equal loudness curve A (ISO 226:1987 “Acoustics -- Normal equal-loudness-level contours”)}
 \description{
-Parameters table of isophonic curve A (ISO 226:1987 “Acoustics -- Normal equal-loudness-level contours”)
+Parameters table of equal loudness curve A (ISO 226:1987 “Acoustics -- Normal equal-loudness-level contours”)
 }
 \author{
 Pasquale Scordino \email{p.scordino@arpa.piemonte.it}

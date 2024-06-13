@@ -188,7 +188,7 @@ SELcalc(x = 66.8, t = 938)
 ### Plot functions (time history and Running Leq, spectrogram, quantile plot)
 
 ```{r TH, eval=TRUE}
-PlotNoiseTimeHistory(df = PTFA, mp = "PTFA", y_lim = c(40, 60))
+PlotNoiseTimeHistory(df = PTFA, variable = "LAeq", mp = "PTFA", y_lim = c(40, 60))
 ```
 
 *PlotNoiseTHcompare* function shows Leq's time history with frequency components

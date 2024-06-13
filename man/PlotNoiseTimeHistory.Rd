@@ -6,6 +6,7 @@
 \usage{
 PlotNoiseTimeHistory(
   df = NULL,
+  variable = NULL,
   filemarks = NULL,
   escl_marks = NULL,
   mp,
@@ -15,13 +16,15 @@ PlotNoiseTimeHistory(
 \arguments{
 \item{df}{is a dataframe with date, leq and markers}
 
+\item{variable}{is a string name of column you want plot}
+
 \item{filemarks}{is a dataframe with date and markers}
 
 \item{escl_marks}{is mark that you want esclude in plot}
 
 \item{mp}{is a name of misure point}
 
-\item{y_lim}{y axe range}
+\item{y_lim}{y axes range}
 }
 \description{
 Returns a time history plot
@@ -30,12 +33,12 @@ Returns a time history plot
 #data(P1FA)
 #data(markers)
 
-PlotNoiseTimeHistory(df = P1FA, mp = "P1FA", y_lim = c(40, 65))
+PlotNoiseTimeHistory(df = P1FA, variable = "LAeq", mp = "P1FA", y_lim = c(40, 65))
 
-PlotNoiseTimeHistory(df = P1FA, mp = "P1FA",
+PlotNoiseTimeHistory(df = P1FA, variable = "LAeq", mp = "P1FA",
                      filemarks = markers, y_lim = c(40, 65))
 
-PlotNoiseTimeHistory(df = P1FA, mp = "P1FA", escl_marks = "escludi",
+PlotNoiseTimeHistory(df = P1FA, variable = "LAeq", mp = "P1FA", escl_marks = "escludi",
                      y_lim = c(40, 65))
 
 }

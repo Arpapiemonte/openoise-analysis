@@ -1,7 +1,7 @@
 Package: OpeNoise
 Type: Package
 Title: Environmental Noise Pollution Data Analysis
-Version: 0.2-16
+Version: 0.2-17
 Author: Pasquale Scordino [aut, cre], Simone Sperotto [ctb], Stefano Masera [ctb], Daniele Grasso [ctb], Jacopo Fogola [ctb]
 Maintainer: Pasquale Scordino <scordino.pasquale@gmail.com>
 Imports: tidyr, lubridate, ggplot2, pracma

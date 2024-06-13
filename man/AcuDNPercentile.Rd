@@ -29,7 +29,7 @@ AcuDNPercentile(df = exampleHourlyData,
                 parameter = "leq",
                 from = "5",
                 to = "22",
-                period = "night")
+                period = "night")[1:5]
 
 }
 \author{

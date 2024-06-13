@@ -15,7 +15,7 @@ Returns a vector of energetic mean of Leq......
 \examples{
 #data("P1FA")
 
-runningLeq(x = P1FA$LAeq)
+runningLeq(x = P1FA$LAeq)[1:10]
 }
 \author{
 Pasquale Scordino \email{p.scordino@arpa.piemonte.it}

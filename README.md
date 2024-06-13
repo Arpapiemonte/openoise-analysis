@@ -258,7 +258,7 @@ SELcalc(x = 66.8, t = 938)
 ### Plot functions (time history and Running Leq, spectrogram, quantile plot)
 
 ``` r
-PlotNoiseTimeHistory(df = PTFA, mp = "PTFA", y_lim = c(40, 60))
+PlotNoiseTimeHistory(df = PTFA, variable = "LAeq", mp = "PTFA", y_lim = c(40, 60))
 ```
 
 <img src="man/figures/plot_image/README-TH-1.png" width="100%" />

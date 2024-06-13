@@ -58,7 +58,7 @@ NULL
 #' @keywords data
 NULL
 
-#' Parameters table of isophonic curve A (ISO 226:1987 “Acoustics -- Normal equal-loudness-level contours”)
+#' Parameters table of equal loudness curve A (ISO 226:1987 “Acoustics -- Normal equal-loudness-level contours”)
 #'
 #' @name iso
 #' @docType data
@@ -530,16 +530,18 @@ Maskapply <- function(filemarks, dataset, mp) {
 #'
 #' Returns a time history plot
 #' @param df  is a dataframe with date, leq and markers
+#' @param variable is a string name of column you want plot
 #' @param filemarks  is a dataframe with date and markers
 #' @param escl_marks is mark that you want esclude in plot
 #' @param mp  is a name of misure point
-#' @param y_lim y axe range
+#' @param y_lim y axes range
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/PlotNoiseTimeHistory_ex.R
 #' @import ggplot2
 #' @export
-PlotNoiseTimeHistory <- function (df = NULL, filemarks = NULL, escl_marks = NULL, mp,  y_lim = c(20, 80))
+PlotNoiseTimeHistory <- function (df = NULL, variable = NULL, filemarks = NULL,
+                                  escl_marks = NULL, mp,  y_lim = c(20, 80))
 {
   if (!missing(filemarks)) {
     IndexNameMark <- ExtractIndexMark(filemarks, df, mp)
@@ -559,8 +561,8 @@ PlotNoiseTimeHistory <- function (df = NULL, filemarks = NULL, escl_marks = NULL
                                 levels = unique(dateRanges$marker[1:length(dateRanges$marker)]))
 
     p <- ggplot(a, aes(x = date)) +
-      geom_line(aes(y = a[, 2])) +
-      geom_line(aes(y = runningLeq(a[, 2])), col = "blue") +
+      geom_line(aes(y = .data[[variable]])) +
+      geom_line(aes(y = runningLeq(.data[[variable]])), col = "blue") +
       geom_rect(data = dateRanges, aes(xmin = start, xmax = stop,
                                        ymin = -Inf, ymax = Inf, colour = marker),
                 inherit.aes = FALSE,
@@ -577,8 +579,8 @@ PlotNoiseTimeHistory <- function (df = NULL, filemarks = NULL, escl_marks = NULL
          2:(length(names(df)) - 1)] <- NA
 
       p <- ggplot(df, aes(x = date)) +
-        geom_line(aes(y = df[, 2])) +
-        geom_line(aes(y = runningLeq(df[, 2])), col = "blue") +
+        geom_line(aes(y = .data[[variable]])) +
+        geom_line(aes(y = runningLeq(.data[[variable]])), col = "blue") +
         ylim(y_lim) +
         ylab("dB(A)") +
         ggtitle(paste("Time history and running Leq - ", mp)) +
@@ -586,8 +588,8 @@ PlotNoiseTimeHistory <- function (df = NULL, filemarks = NULL, escl_marks = NULL
       return(p)
     } else {
       p <- ggplot(df, aes(x = date)) +
-        geom_line(aes(y = df[, 2])) +
-        geom_line(aes(y = runningLeq(df[, 2])), col = "blue") +
+        geom_line(aes(y = .data[[variable]])) +
+        geom_line(aes(y = runningLeq(.data[[variable]])), col = "blue") +
         ylim(y_lim) +
         ylab("dB(A)") +
         ggtitle(paste("Time history and running Leq - ", mp)) +
@@ -801,8 +803,8 @@ avr.day.night <- function(x,
                   function(x) {
                     c(
                       MEAN = mean(x, na.rm = T),
-                      MIN = min(x, na.rm = T),
-                      MAX = (max(x, na.rm = T)),
+                      MIN = min(x),
+                      MAX = (max(x)),
                       SD = sd(x)
                     )
                   })
@@ -854,8 +856,8 @@ avr.day.night <- function(x,
       summary_night <- function(x) {
         c(
           MEAN = mean(x, na.rm = T),
-          MIN = min(x, na.rm = T),
-          MAX = max(x, na.rm = T),
+          MIN = min(x),
+          MAX = max(x),
           SD = sd(x)
         )
       }
@@ -886,8 +888,8 @@ avr.day.night <- function(x,
         t_G <- tapply(x[[variable]], list(x$giorno, x$mese, x$anno),
                       function(y) {
                         c(MEAN = energetic.mean(y),
-                          MIN = min(y, na.rm = T),
-                          MAX = max(y, na.rm = T)
+                          MIN = min(y),
+                          MAX = max(y)
                         )
                       })
 
@@ -946,8 +948,8 @@ avr.day.night <- function(x,
           # Custom function for calculating basic statistics
           summary_night <- function(x) {
             c(MEAN = energetic.mean(x),
-              MIN = min(x, na.rm = T),
-              MAX = max(x, na.rm = T)
+              MIN = min(x),
+              MAX = max(x)
             )
           }
 

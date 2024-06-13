@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">OpeNoise</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2-16</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2-17</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,124 +70,8 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#data("P1FA")</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">runningLeq</span><span class="op">(</span>x <span class="op">=</span> <span class="va">P1FA</span><span class="op">$</span><span class="va">LAeq</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    [1] 58.0 56.0 54.5 53.5 52.8 52.2 51.8 51.4 51.2 51.2 50.9 50.7 50.4 50.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [15] 50.0 49.9 49.8 49.6 49.5 49.4 49.3 49.1 49.0 48.9 48.9 49.0 49.3 49.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [29] 49.5 49.7 49.7 49.7 49.7 49.7 49.7 49.6 49.6 49.5 49.5 49.4 49.4 49.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [43] 49.3 49.2 49.1 49.1 49.0 49.0 48.9 48.9 48.9 48.8 48.8 48.8 48.8 48.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [57] 48.9 48.9 48.8 49.0 49.0 48.9 48.9 48.9 48.8 48.8 48.8 48.7 48.7 48.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [71] 48.6 48.6 48.5 48.5 48.5 48.4 48.4 48.4 48.3 48.3 48.3 48.2 48.2 48.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [85] 48.1 48.1 48.1 48.1 48.1 48.0 48.0 48.0 48.0 48.0 48.0 48.0 48.0 47.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [99] 47.9 47.9 47.9 47.9 47.9 47.8 47.8 47.8 47.8 47.7 47.7 47.7 47.7 47.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [113] 47.7 47.6 47.6 47.6 47.6 47.6 47.6 47.5 47.5 47.5 47.5 47.5 47.5 47.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [127] 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.3 47.3 47.3 47.3 47.3 47.3 47.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [141] 47.3 47.3 47.3 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [155] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [169] 47.1 47.1 47.1 47.1 47.1 47.1 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [183] 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [197] 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 46.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [211] 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [225] 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [239] 46.9 46.9 46.8 46.8 46.8 46.8 46.8 46.8 46.8 46.8 46.8 46.8 46.9 46.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [253] 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9 46.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [267] 46.9 46.9 46.9 46.9 46.9 46.9 46.9 47.0 47.0 47.0 47.0 47.0 47.0 47.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [281] 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [295] 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [309] 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [323] 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.0 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [337] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.2 47.3 47.3 47.3 47.3 47.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [351] 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.4 47.4 47.4 47.4 47.4 47.5 47.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [365] 47.6 47.6 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [379] 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.7 47.7 47.7 47.7 47.7 47.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [393] 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [407] 47.7 47.7 47.7 47.7 47.7 47.7 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [421] 47.6 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.8 47.8 47.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [435] 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.9 47.9 47.9 47.9 47.9 47.9 47.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [449] 47.9 47.9 47.9 48.0 48.0 48.0 48.0 48.0 48.0 48.0 48.0 48.0 48.0 48.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [463] 48.0 48.0 48.0 48.0 48.0 48.0 48.0 47.9 47.9 47.9 47.9 47.9 47.9 47.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [477] 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [491] 47.9 47.9 47.9 47.9 47.8 47.8 47.8 47.8 47.8 47.8 47.9 47.9 47.9 47.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [505] 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [519] 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.9 47.8 47.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [533] 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [547] 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8 47.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [561] 47.8 47.8 47.8 47.8 47.8 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [575] 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [589] 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [603] 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.6 47.6 47.6 47.6 47.6 47.6 47.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [617] 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [631] 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [645] 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.5 47.5 47.5 47.5 47.5 47.5 47.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [659] 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [673] 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [687] 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [701] 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [715] 47.5 47.5 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [729] 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [743] 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [757] 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [771] 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [785] 47.4 47.4 47.4 47.4 47.5 47.5 47.5 47.5 47.6 47.6 47.6 47.6 47.6 47.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [799] 47.6 47.6 47.6 47.6 47.6 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [813] 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [827] 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [841] 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5 47.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [855] 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [869] 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [883] 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [897] 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [911] 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4 47.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [925] 47.4 47.4 47.4 47.4 47.4 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [939] 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [953] 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [967] 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [981] 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.3 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [995] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1009] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1023] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1037] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1051] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1065] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1079] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1093] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1107] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1121] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1135] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1149] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1163] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1177] 47.2 47.2 47.2 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1191] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1205] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1219] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1233] 47.1 47.1 47.1 47.1 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1247] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1261] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1275] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1289] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1303] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1317] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1331] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1345] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1359] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1373] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1387] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1401] 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1 47.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1415] 47.1 47.1 47.1 47.1 47.1 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1429] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1443] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1457] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1471] 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2 47.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1485] 47.2 47.2 47.3 47.3 47.3 47.4 47.4 47.4 47.4 47.4 47.5 47.6 47.6 47.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1499] 47.6 47.6 47.6 47.6 47.6 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1513] 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1527] 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.6 47.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1541] 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1555] 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6 47.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1569] 47.6 47.6 47.6 47.6 47.6 47.6 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1583] 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1597] 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1611] 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7 47.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1625] 47.7 47.7</span>
+<span class="r-in"><span><span class="fu">runningLeq</span><span class="op">(</span>x <span class="op">=</span> <span class="va">P1FA</span><span class="op">$</span><span class="va">LAeq</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 58.0 56.0 54.5 53.5 52.8 52.2 51.8 51.4 51.2 51.2</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

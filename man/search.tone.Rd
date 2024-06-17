@@ -11,7 +11,7 @@ search.tone(x, statistic = energetic.mean, plot.tone = FALSE)
 
 \item{statistic}{is statistic used default is energetic.mean}
 
-\item{plot.tone}{in logic argument default is false don't plot result}
+\item{plot.tone}{is logic argument default is false don't plot result}
 }
 \value{
 plot of 1/3 octave frequency and isofonic curve A (ISO 226:1987)

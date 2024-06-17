@@ -1,3 +1,8 @@
+## In the same source file (to remind you that you did it) add:
+if(getRversion() >= "2.15.1")  utils::globalVariables(
+  c("value", "name", "periodo", "ora", "freq", "llmin", "iso", "Hz", "LLfmin",
+    "Lf", "date2", "LAFmax", "Component (Hz)")
+  )
 
 #' Noise data of misure in house open window condition
 #'
@@ -53,7 +58,7 @@ NULL
 #' @keywords data
 NULL
 
-#' Parameters table of isophonic curve A (ISO 226:1987 “Acoustics -- Normal equal-loudness-level contours”)
+#' Parameters table of equal loudness curve A (ISO 226:1987 “Acoustics -- Normal equal-loudness-level contours”)
 #'
 #' @name iso
 #' @docType data
@@ -115,7 +120,7 @@ energetic.min <- function(y) {
 #' research pure tone
 #' @param x is a dataframe with llfmin...
 #' @param statistic is statistic used default is energetic.mean
-#' @param plot.tone in logic argument default is false don't plot result
+#' @param plot.tone is logic argument default is false don't plot result
 #' @return plot of 1/3 octave frequency and isofonic curve A (ISO 226:1987)
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
@@ -199,16 +204,16 @@ search.tone <- function(x, statistic = energetic.mean, plot.tone = FALSE) {
     )
   }
 
-  # Seleziono il dataframe senza la colonna date
+  # I select the dataframe without the date column
   x <- x[, 1:dim(x)[2]]
 
-  # Uso la funzione gather per invertire la tabella da wide a long
+  # I use the gather function to reverse the table from wide to long
   xlong  <- tidyr::gather(x, freq, llmin)
   Tab.min <- as.data.frame(as.table(tapply(
     xlong$llmin,
     xlong$freq, statistic
   )))
-  # Nomino le colonne della nuova tabella
+  # I name the columns of the new table
   names(Tab.min) <- c("Hz", "LLfmin")
   Tab.min$Hz  <- as.factor(Tab.min$Hz)
 
@@ -289,7 +294,7 @@ search.tone <- function(x, statistic = energetic.mean, plot.tone = FALSE) {
 
   Tab.min <- with(Tab.min, Tab.min[order(Hz, LLfmin),])
 
-  # Manipolazione dataset
+  # Dataset manipulation
   Tab.min$LLfmin <-
     suppressWarnings(as.numeric(as.character(Tab.min$LLfmin)))
 
@@ -300,7 +305,7 @@ search.tone <- function(x, statistic = energetic.mean, plot.tone = FALSE) {
   }
 
   isof$Hz <- Tab.min$Hz
-  isof$LLfmin <- signif(x = Tab.min$LLfmin, digit = 3)
+  isof$LLfmin <- signif(x = Tab.min$LLfmin, digits = 3)
   isof$afC <- (isof$af) * (isof$LLfmin - isof$Tf)
   isof$bfC <- (isof$bf) * (isof$LLfmin - isof$Tf)
   isof$Ln <- (isof$afC) / (1 + isof$bfC) + 4.2
@@ -308,10 +313,10 @@ search.tone <- function(x, statistic = energetic.mean, plot.tone = FALSE) {
   isof$A <- (isof$Ln1) - 4.2
   isof$Lf <-
     signif(x = (isof$A) / (isof$af - (isof$A) * (isof$bf)) + isof$Tf,
-           digit = 3)
+           digits = 3)
   isof <- as.data.frame(isof)
 
-  # Ricerca Tono puro
+  # Pure Tone Search
   A <- (length(isof$Hz[(which(isof$LLfmin >= isof$Lf))]) == 1)
   B <-
     (isof$Hz[(which(isof$LLfmin >= isof$Lf))] == isof$Hz[(which(diff(isof$LLfmin) >=
@@ -327,7 +332,7 @@ search.tone <- function(x, statistic = energetic.mean, plot.tone = FALSE) {
     tonHz <- "NA"
   }
 
-  # Livello LLfmin del Tono
+  # LLfmin Level of Tone
   if (tonHz == "NA") {
     LevHz <- "NA"
   } else {
@@ -335,15 +340,15 @@ search.tone <- function(x, statistic = energetic.mean, plot.tone = FALSE) {
                    "dB", sep = " ")
   }
 
-  # Valore isofonica
+  # Isophonic value
   if (tonHz == "NA") {
     LevIsof <- "NA"
   } else {
-    LevIsof <- paste(signif(max(isof$Ln, na.rm = TRUE), digit = 3),
+    LevIsof <- paste(signif(max(isof$Ln, na.rm = TRUE), digits = 3),
                      "phon", sep = " ")
   }
 
-  # Grafico: copia su cartella di lavoro e mostra su device
+  # Graph: copy to workbook and show on device
   if (plot.tone == TRUE) {
     sp <- ggplot(data = isof) +
       geom_bar(stat="identity", aes(x = Hz, y = LLfmin),
@@ -525,16 +530,18 @@ Maskapply <- function(filemarks, dataset, mp) {
 #'
 #' Returns a time history plot
 #' @param df  is a dataframe with date, leq and markers
+#' @param variable is a string name of column you want plot
 #' @param filemarks  is a dataframe with date and markers
 #' @param escl_marks is mark that you want esclude in plot
 #' @param mp  is a name of misure point
-#' @param y_lim y axe range
+#' @param y_lim y axes range
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/PlotNoiseTimeHistory_ex.R
 #' @import ggplot2
 #' @export
-PlotNoiseTimeHistory <- function (df = NULL, filemarks = NULL, escl_marks = NULL, mp,  y_lim = c(20, 80))
+PlotNoiseTimeHistory <- function (df = NULL, variable = NULL, filemarks = NULL,
+                                  escl_marks = NULL, mp,  y_lim = c(20, 80))
 {
   if (!missing(filemarks)) {
     IndexNameMark <- ExtractIndexMark(filemarks, df, mp)
@@ -554,8 +561,8 @@ PlotNoiseTimeHistory <- function (df = NULL, filemarks = NULL, escl_marks = NULL
                                 levels = unique(dateRanges$marker[1:length(dateRanges$marker)]))
 
     p <- ggplot(a, aes(x = date)) +
-      geom_line(aes(y = a[, 2])) +
-      geom_line(aes(y = runningLeq(a[, 2])), col = "blue") +
+      geom_line(aes(y = .data[[variable]])) +
+      geom_line(aes(y = runningLeq(.data[[variable]])), col = "blue") +
       geom_rect(data = dateRanges, aes(xmin = start, xmax = stop,
                                        ymin = -Inf, ymax = Inf, colour = marker),
                 inherit.aes = FALSE,
@@ -572,8 +579,8 @@ PlotNoiseTimeHistory <- function (df = NULL, filemarks = NULL, escl_marks = NULL
          2:(length(names(df)) - 1)] <- NA
 
       p <- ggplot(df, aes(x = date)) +
-        geom_line(aes(y = df[, 2])) +
-        geom_line(aes(y = runningLeq(df[, 2])), col = "blue") +
+        geom_line(aes(y = .data[[variable]])) +
+        geom_line(aes(y = runningLeq(.data[[variable]])), col = "blue") +
         ylim(y_lim) +
         ylab("dB(A)") +
         ggtitle(paste("Time history and running Leq - ", mp)) +
@@ -581,8 +588,8 @@ PlotNoiseTimeHistory <- function (df = NULL, filemarks = NULL, escl_marks = NULL
       return(p)
     } else {
       p <- ggplot(df, aes(x = date)) +
-        geom_line(aes(y = df[, 2])) +
-        geom_line(aes(y = runningLeq(df[, 2])), col = "blue") +
+        geom_line(aes(y = .data[[variable]])) +
+        geom_line(aes(y = runningLeq(.data[[variable]])), col = "blue") +
         ylim(y_lim) +
         ylab("dB(A)") +
         ggtitle(paste("Time history and running Leq - ", mp)) +
@@ -599,6 +606,7 @@ PlotNoiseTimeHistory <- function (df = NULL, filemarks = NULL, escl_marks = NULL
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/AcuPercentile_ex.R
+#' @import stats
 #' @export
 AcuPercentile  <- function(x) {
   perc <- rev(quantile(x,
@@ -606,6 +614,49 @@ AcuPercentile  <- function(x) {
                        na.rm = T))
   names(perc) <- c("L1","L5","L10","L50","L90","L95","L99" )
   return(perc)
+}
+
+#' Calculate reverse Percentile for period
+#'
+#' Returns a vector of acoustic percetile
+#' @param df  is a dataframe with Leq data
+#' @param parameter is a parameter, example "LAeq"
+#' @param from is start hour
+#' @param to is end hour
+#' @param period is a period night or day
+#' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
+#' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
+#' @example inst/examples/AcuDNPercentile_ex.R
+#' @import lubridate
+#' @export
+AcuDNPercentile <- function(df, parameter, from, to, period) {
+
+  listaDF <- list()
+  listaQuantile <- list()
+
+  if (period == "night") {
+
+    for (i in unique(day(df$date))) {
+      listaDF[[i]] <- df[which((hour(df$date) >= from & day(df$date) == i)
+                               | (hour(df$date) < to & day(df$date) == i + 1)), ]
+
+      listaQuantile[[i]] <- (AcuPercentile(listaDF[[i]][[parameter]]))
+    }
+
+  } else {
+
+    if (period == "day") {
+
+      for (i in unique(day(df$date))) {
+        listaDF[[i]] <- df[which((hour(df$date) >= from & day(df$date) == i)
+                                 | (hour(df$date) < to & day(df$date) == i)), ]
+
+        listaQuantile[[i]] <- (AcuPercentile(listaDF[[i]][[parameter]]))
+      }
+
+    }
+  }
+  return(listaQuantile)
 }
 
 #' Calculate hourly energetic mean
@@ -628,7 +679,7 @@ HourlyEmean <- function(df, variable, timeZone = "Europe/Rome") {
   names(df_hour) <- c("date", "hour", variable)
   df_hour$date <- paste(df_hour$date, df_hour$hour, sep = " ")
   df_hour <- df_hour[, -2]
-  df_hour <- na.omit(df_hour) # Riga aggiunta in data 20/10/2022
+  df_hour <- na.omit(df_hour)
   return(df_hour)
 }
 
@@ -649,7 +700,7 @@ HolidaysDate <- function(year_holiday){
   holiday_fixed <- dmy(paste(holiday_fixed_dm, year_holiday, sep = "-"))
 
   # GregorianCalendar_MNindex
-  if (year_holiday >= 1583 & year_holiday <= 1699 ) {
+  if (year_holiday >= 1583 & year_holiday <= 1699) {
     M <- 22
     N <- 2
   } else if(year_holiday >= 1700 & year_holiday <= 1799){
@@ -722,70 +773,62 @@ avr.day.night <- function(x,
                           stat = "n_mean",
                           ...) {
 
-  # Inserisco i flag "giorno" (6-22) e "notte" (22-6)
-  # Manipolazione data e ora
-  x$date <- as.character(x$date)
-  x$date <- as.POSIXct(x$date)
+  # I enter the “day” (6-22) and “night” (22-6) flags.
+  # Date and time manipulation
+  if (is.character(x$date)) {
+    x$date <- ymd_h(x$date)
+  }
   x$data <- date(x$date)
   x$ora <- hour(x$date)
   x$giorno <- day(x$date)
   x$mese <- month(x$date)
   x$anno <- year(x$date)
 
-  # Inserimento flags nella nuova variabile Periodo
+  # Insert flags in the new variable Period
   x$periodo1 <- ifelse(x$ora <= 5, "N", "G")
   x$periodo2 <- ifelse(x$ora >= 22, "N", "G")
   x$periodo <-
     ifelse(x$periodo1 == "N" | x$periodo2 == "N", "N", "G")
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  # subsetting df rispetto i flags notte "N" e giorno "G"
+  # subsetting df with respect to the night “N” and day “G” flags.
   x_N <- subset(x, periodo == "N")
   x_G <- subset(x, periodo == "G")
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  # Cambio etichetta al dataset da "x_G" a "x"
+  # Change label to dataset from “x_G” to “x”
   x <- x_G
 
-  # Creazione di una funzione personalizzata "Calcolo della media energetica
-  #(media logaritmica in base 10)"
-  # energetic.mean <- function(x) {
-  #   x <- x[!is.na(x)]
-  #   li <- (1 / length(x))
-  #   s <- sum(10 ^ (x / 10))
-  #   return(round(10 * (log10(li * s)), digits = 1))
-  # }
-
   if (period == "day" & stat == "n_mean") {
-    # Calcolo media, min, massimo e deviazione standard periodo Diurno
+    # Calculation of mean, min, max, and standard deviation Diurnal period
     t_G <- tapply(x[[variable]], list(x$giorno, x$mese, x$anno),
                   function(x) {
                     c(
                       MEAN = mean(x, na.rm = T),
-                      MIN = min(x, na.rm = T),
-                      MAX = (max(x, na.rm = T)),
+                      MIN = min(x),
+                      MAX = (max(x)),
                       SD = sd(x)
                     )
                   })
-    # Assemblo il contenuto della lista "t_G" e lo trasformo in dataframe
+    # I assemble the contents of the list “t_G” and transform it into dataframe
     x_G_Day <- as.data.frame(do.call(rbind, t_G))
 
-    # Applico la funzione "round"
+    # I apply the “round” function
     x_G_Day <- round(x_G_Day[ , 1:4], 2)
 
-    # Inserisco il vettore data nel dataframe
+    # I insert the date vector into the dataframe
     x_G$data <- as.POSIXct(x_G$data)
     x_G_Day$DATA <- seq.Date(date(x_G$data[1]),
                              date(x_G$data[dim(x_G)[1]]), by = "day")
 
-    # Riordino posizione variabili
+    # Variable position reordering
     x_G_Day <- x_G_Day[, c(5, 1:4)]
     return(x_G_Day)
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   } else {
     if (period == "night" & stat == "n_mean") {
-      # codice per calcolo statistiche notturne a cavallo di due giorni
+      # code for calculation of night statistics straddling two days
 
-      # Inserimento flags alle ore notturne divise per >= 22 "N1" il resto "N2"
+      # Input flags at night hours divided by >= 22 “N1” the rest “N2”
       x_N$PeriodoAcu <- ifelse(x_N$ora >= 22, "N1", "N2")
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       x_N1 <- x_N[!(x_N$data == unique((x_N$data))[1] & x_N$ora < 22), ]
@@ -794,8 +837,8 @@ avr.day.night <- function(x,
       x_N2 <- x_N1[!(x_N1$data == unique((x_N1$data))[end] &
                        x_N1$ora >= 22), ]
       #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      # ciclo che mette in lista i dataframe subsettati secondo i criteri
-      # 22-6 di due giorni consecutivi
+      # Loop that lists the dataframes subsetted according to the criteria
+      # 22-6 of two consecutive days
       a <- list()
       for (i in 1:length(unique(x_N2$data))) {
         a[[i]] <- subset(x_N2,
@@ -809,82 +852,82 @@ avr.day.night <- function(x,
                              a[[i]]$ora %in% c(23, 22)), ]
       }
 
-      # funzione personalizzata per il calcolo delle statistiche di base
+      # Custom function for calculating basic statistics
       summary_night <- function(x) {
         c(
           MEAN = mean(x, na.rm = T),
-          MIN = min(x, na.rm = T),
-          MAX = max(x, na.rm = T),
+          MIN = min(x),
+          MAX = max(x),
           SD = sd(x)
         )
       }
 
-      # Applicazione funzione sulla lista contenente i dataframe 22-6
+      # Application function on the list containing dataframes 22-6
       b <- list()
       suppressWarnings(for (j in 1:length(a)) {
         b[[j]] <- summary_night(a[[j]][[variable]])
       })
 
-      # Creazione del dataframe finale con i risultati
+      # Creation of the final dataframe with the results
       x_nigthACU <- as.data.frame(do.call(rbind, b))
 
-      # Applico la funzione "round"
+      # I apply the “round” function
       x_nigthACU <- round(x_nigthACU[ ,1:4], 2)
 
-      # Inserimento colonna DATA
+      # DATE column entry
       x_nigthACU$DATA <- unique(x_N2$data)
 
-      # Riarrangiamento colonne del dataframe
+      # Dataframe column rearrangement
       x_nigthACU <- x_nigthACU[, c(5, 1, 2, 3, 4)]
 
       return(x_nigthACU)
 
     } else {
       if (period == "day" & stat == "e_mean") {
-        # Calcolo media, min, massimo e deviazione standard periodo Diurno
+        # Calculation of mean, min, max, and standard deviation Diurnal period
         t_G <- tapply(x[[variable]], list(x$giorno, x$mese, x$anno),
                       function(y) {
                         c(MEAN = energetic.mean(y),
-                          MIN = min(y, na.rm = T),
-                          MAX = max(y, na.rm = T)
+                          MIN = min(y),
+                          MAX = max(y)
                         )
                       })
 
-        # Assemblo il contenuto della lista "t_G" e lo trasformo in dataframe
+        # I assemble the contents of the list “t_G” and transform it into dataframe
         x_G_Day <- as.data.frame(do.call(rbind, t_G))
 
-        # Applico la funzione "round"
+        # I apply the “round” function
         x_G_Day <- round(x_G_Day[, 1:3], 2)
 
-        # Inserisco il vettore data nel dataframe
+        # I insert the date vector into the dataframe
         x_G$data <- as.POSIXct(x_G$data)
         x_G_Day$DATA <- seq.Date(date(x_G$data[1]),
                                  date(x_G$data[dim(x_G)[1]]), by = "day")
 
-        # Riordino posizione variabili
+        # Variable position reordering
         x_G_Day <- x_G_Day[, c(4, 1:3)]
 
         return(x_G_Day)
 
       } else {
         if (period == "night" & stat == "e_mean") {
-          # codice per calcolo statistiche notturne a cavallo di due giorni
+          #  code for calculation of night statistics straddling two days
 
-          # Inserimento flags alle ore notturne divise per >= 22 "N1"
-          # il resto "N2"
+          # Input flags at night hours divided by >= 22 “N1”
+          # the rest “N2”
           x_N$PeriodoAcu <- ifelse(x_N$ora >= 22, "N1", "N2")
           #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-          # subsetting per l'eliminazione delle prime e ultime ore che non
-          # completano il range orario da analizzare
+          # subsetting for the elimination of the first and last hours that do not
+          # complete the time range to be analyzed
           x_N1 <- x_N[!(x_N$data == unique((x_N$data))[1] & x_N$ora < 22), ]
 
           end <- length(unique(x_N1$data))
           x_N2 <- x_N1[!(x_N1$data == unique((x_N1$data))[end] &
                            x_N1$ora >= 22), ]
           #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-          # ciclo che mette in lista i dataframe subsettati secondo i criteri
-          # 22-6 di due giorni consecutivi
+          # Loop that lists the dataframes subsetted according to the criteria
+          # 22-6 of two consecutive days
           a <- list()
           for (i in 1:length(unique(x_N2$data))) {
             a[[i]] <- subset(x_N2,
@@ -902,30 +945,30 @@ avr.day.night <- function(x,
                                  a[[i]]$ora %in% c(23, 22)), ]
           }
 
-          # funzione personalizzata per il calcolo delle statistiche di base
+          # Custom function for calculating basic statistics
           summary_night <- function(x) {
             c(MEAN = energetic.mean(x),
-              MIN = min(x, na.rm = T),
-              MAX = max(x, na.rm = T)
+              MIN = min(x),
+              MAX = max(x)
             )
           }
 
-          # Applicazione funzione sulla lista contenente i dataframe 22-6
+          # Application function on the list containing dataframes 22-6
           b <- list()
           suppressWarnings(for (j in 1:length(a)) {
             b[[j]] <- summary_night(a[[j]][[variable]])
           })
 
-          # Creazione del dataframe finale con i risultati
+          # Creation of the final dataframe with the results
           x_nigthACU <- as.data.frame(do.call(rbind, b))
 
-          # Applico la funzione "round"
+          # I apply the “round” function
           x_nigthACU <- round(x_nigthACU[,1:3], 2)
 
-          # Inserimento colonna DATA
+          # DATE column entry
           x_nigthACU$DATA <- unique(x_N2$data)
 
-          # Riarrangiamento colonne del dataframe
+          # Dataframe column rearrangement
           x_nigthACU <- x_nigthACU[, c(4, 1, 2, 3)]
 
           return(x_nigthACU)
@@ -952,27 +995,8 @@ LdenCalculator <-
   function(dataframe, variable, type = "daily", ...) {
 
     df <- dataframe
-
-    #if (is.character(df$hour) ) {
-    #  # Manipolazione del data e ora del dataset dal formato 00-01
-    #  hour_covid <- NULL
-    #  for (i in seq_along(df$hour)) {
-    #    hour_covid[i] <- as.numeric(strsplit(df$hour, "-")[[i]][1])
-    #  }
-    #  df$hour <- hour_covid
-    #}
-    #
-    #if (!is.character(df$date)) {
-    #  df$date <- as.character(df$date)
-    #  df$date <- paste(df$date, df$hour, sep = " ")
-    #  df$date <- ymd_h(df$date)
-    #} else {
-    #  df$date <- paste(df$date, df$hour, sep = " ")
-    #  df$date <- ymd_h(df$date)
-    #}
-
     df$day <- day(df$date)
-    df$hour <- hour(df$date) # Riga aggiunta in data 20/10/2022
+    df$hour <- hour(df$date)
     df$month <- month(df$date)
     df$year <- year(df$date)
 
@@ -983,7 +1007,7 @@ LdenCalculator <-
       }
     }
 
-    # inserimento periodi D, E, N e D_acu
+    # insertion of periods D, E, N and D_acu
     for (i in 1:length(df$hour)) {
       if (df$hour[i] >= 6 & df$hour[i] <= 19) {
         df$period1[i] <- "D"
@@ -998,10 +1022,10 @@ LdenCalculator <-
 
     df$period3 <- ifelse(df$hour >= 6 & df$hour <= 21, "D_acu", "")
 
-    # creazione di una colonna con la seguenza della frequenza di occorrenza
+    # Creation of a column following the frequency of occurrence
     df$count <- sequence(rle(as.character(df$period1))$lengths)
 
-    # marcatura periodi night a cavallo fra due giorni
+    # marking periods night straddling two days
     for (i in seq_along(df$count)) {
       if (df$count[i] == 8 & df$period1[i] %in% "N") {
         for (n in 7:1) {
@@ -1013,16 +1037,8 @@ LdenCalculator <-
       }
     }
 
-    # # Creazione di una funzione personalizzata "Calcolo della media energetica
-    # #(media logaritmica in base 10)"
-    # energetic.mean <- function(x) {
-    #   x <- x[!is.na(x)]
-    #   li <- (1 / length(x))
-    #   s <- sum(10 ^ (x / 10))
-    #   return(round(10 * (log10(li * s)), digits = 1))
-    # }
 
-    # funzione calcolo Lden
+    # Lden calculation function
     LdenCalc <- function(x) {
       result <-
         round(10 * log10(((14 / 24) * (10 ^ (
@@ -1036,11 +1052,11 @@ LdenCalculator <-
 
 
     if (type == "daily") {
-      # calcolo delle medie energetiche in funzione dei periodi
-      # e creazione di un dataset unico
+      # Calculation of energy averages as a function of periods
+      # And creation of a unique dataset
       #-------------------------------------------------------------------------
 
-      # gestione dei dati a cavallo fra due giorni per il periodo notturno
+      # Management of data straddling two days for the overnight period
       df$date2 <- as.Date(df$date)
       for (i in seq_along(df$hour)) {
         if (df$hour[i] %in% c(22, 23, 0)) {
@@ -1085,7 +1101,7 @@ LdenCalculator <-
       df.DEN_wider$Lden <- NA
       #-------------------------------------------------------------------------
 
-      # applicazione della funzione
+      # application of the function
       df.DEN_wider$Lden <- LdenCalc(df.DEN_wider)
       return(df.DEN_wider)
     } else {
@@ -1208,7 +1224,6 @@ PlotSpectrogram <- function (df, coLs, plot_title = NULL)
   spec <- ggplot(df_long, aes(date, name)) +
     geom_raster(aes(fill = value), interpolate = TRUE) +
     scale_y_discrete("frequency (Hz)") +
-    #scale_fill_viridis_c(option = "H") +
     scale_fill_viridis_c(direction = -1, option = "plasma") +
     labs(x = "time", fill = "dB") +
     ggtitle(paste(plot_title, "\n")) +
@@ -1302,18 +1317,6 @@ PlotNoiseTHcompare <- function (df, variable, listvar = NULL, mp, runleq = TRUE,
 #' @importFrom  pracma findpeaks
 #' @export
 searchImpulse <- function(df, cri1 = 6, cri2 = -10, Threshold = 30) {
-  # Manipolazione dataset
- # df$Tempo <- paste(df$Tempo, df$Tms, sep = ".")
-#
- # df$date <- format(as.POSIXlt(paste(df$Data,
- #                                    df$Tempo, sep = " "),
- #                              "%Y-%m-%d %H:%M:%OS", tz = "Europe/Rome"),
- #                   "%Y-%m-%d %H:%M:%OS3")
-#
- # df <- df[-c(1, length(df$Data)), -c(1:5, 83:86)]
- # df <- df[, c(length(names(df)),
- #              2:length(names(df)) - 1)]
- # names(df)[7:78] <- gsub("X1.3.", "", names(df)[7:78])
 
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # CRITERI di IMPULSIVITA'
@@ -1454,14 +1457,14 @@ IntrusiveIndex <- function(dfa, dfr, BW) {
 #' @param df  is a dataframe
 #' @param Cols vector of index cols (1/3 band frequency)
 #' @param Quantile quantile, for example 0.95
-#' @param TimeZone Time zone of dataset
+#' @param TimeZone Time zone dataset (default is UTC)
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/AcousticQuantilePlot_ex.R
 #' @import lubridate
 #' @import ggplot2
 #' @export
-AcousticQuantilePlot <- function(df, Cols, Quantile, TimeZone) {
+AcousticQuantilePlot <- function(df, Cols, Quantile, TimeZone = "UTC") {
 
   AcousticQuantile <- function(x, Quantile) {
     res <- as.vector(rev(quantile(x, probs = as.numeric(Quantile), na.rm = T)))
@@ -1482,8 +1485,12 @@ AcousticQuantilePlot <- function(df, Cols, Quantile, TimeZone) {
   names(dd) <- c("date", "hour", "value", "frequency")
   rownames(dd) <- NULL
 
-  dd$frequency <- gsub("\\.\\d+$", "", dd$frequency, perl = T)
-  dd$frequency <- gsub("LZeq\\.", "", dd$frequency, perl = T)
+  if (length(unique(dd$hour)) > 1) {
+     dd$frequency <- gsub("\\.\\d+$", "", dd$frequency, perl = T)
+     dd$frequency <- gsub("LZeq\\.", "", dd$frequency, perl = T)
+  } else {
+     dd$frequency <- gsub("LZeq\\.", "", dd$frequency, perl = T)
+  }
 
   dd$frequency <- factor(dd$frequency, levels = unique(dd$frequency))
 

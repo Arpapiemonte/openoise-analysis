@@ -1,0 +1,281 @@
+---
+output: github_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  fig.retina = 2,
+  message = FALSE,
+  eval = FALSE,
+  comment = "#>",
+  fig.path = "man/figures/plot_image/README-",
+  out.width = "100%"
+)
+```
+
+# OpeNoise: noise pollution data analysis <img src="man/figures/logo.png" align="right" height="139" alt="" />
+
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/OpeNoise)](https://cran.r-project.org/package=OpeNoise)
+![](http://cranlogs.r-pkg.org/badges/grand-total/OpeNoise)
+<!-- badges: end -->
+
+
+### Installation
+
+The development version can be installed from GitHub. Installation of
+`OpeNoise` from GitHub is easy using the `devtools` package.
+
+``` r
+# install.packages("devtools")
+devtools::install_github("Arpapiemonte/openoise-analysis")
+```
+
+### Introdution 
+
+This tutorial explains how to use the OpeNoise library.
+It works on acoustic data acquired with sound level meters instrument.
+Input dataset format is showed in internal examples that you can access them
+with the *data()* function.
+
+```{r eval=TRUE}
+library(OpeNoise)
+
+data("PTFA")
+
+head(PTFA)[1:3, 1:6]
+
+```
+
+### Acoustic summary calculation:
+
+#### Energetic average
+
+Function calculate energetic average of vector of values in dB.
+*RoundTo* function round value at 0.5.
+
+```{r eval=TRUE}
+energetic.mean(PTFA$LAeq)
+
+x <- energetic.mean(PTFA$LAeq)
+
+RoundTo(x, 0.5)
+```
+
+#### Energetic average weighted
+
+Function calculate energetic average weighted of vector's values in dB respect to
+vector's time like string in format "HH:MM:SS"
+
+```{r eval=TRUE}
+energetic_w.mean(c(55.2, 88.6), c("03:22:52", "08:55:33"))
+```
+
+#### Acoustic percentile
+
+Function return reverse percentile of un vector's values.
+
+```{r eval=TRUE}
+AcuPercentile(PTFA$LAeq)
+
+RoundTo(AcuPercentile(PTFA$LAeq), 0.5)
+```
+
+#### Day and night acoustic percentiles calculate
+
+```{r eval=TRUE}
+data("exampleHourlyData")
+
+AcuDNPercentile(df = exampleHourlyData,
+                parameter = "leq",
+                from = "5",
+                to = "22",
+                period = "night")[1:5]
+```
+
+#### Energetic hourly average
+
+Function return energetic average with hourly aggregation.
+
+```{r eval=TRUE}
+HourlyEmean(PTFA, "LAeq", timeZone = "Europe/Rome")
+```
+
+#### Time decomposition
+
+function retun seconds from hour, minutes and seconds.
+
+```{r eval=TRUE}
+hour <- 5
+minute <- 25
+second <- 50
+deco.time(hour, minute, second)
+```
+
+#### holidays date (Gregorian calendar)
+
+This is simple function using Gauss'algorithm to return holiday
+date in according of Gregorian calendar.
+
+```{r eval=TRUE}
+HolidaysDate(2024)
+```
+
+#### Average day/night period (06:00/22:00 - 22:00/06:00)
+
+Function return energetic average or simple average with aggregation
+day (06:00/22:00) or night (22:00/06:00).
+
+```{r eval=TRUE, warning=FALSE}
+data("exampleHourlyData")
+
+df_night <- avr.day.night(exampleHourlyData, variable = "leq", period = "night", 
+              stat = "e_mean")
+
+head(df_night, 5)
+
+df_day <- avr.day.night(exampleHourlyData, variable = "leq", period = "day", 
+              stat = "e_mean")
+
+head(df_day, 5)
+```
+
+#### Lden calculation
+
+This function return energetic average aggregate:
+
+- *D_acu* (day 06:00/22:00)
+- *D*     (day 06:00/20:00)
+- *E*     (Evening 20:00/22:00)
+- *N*     (Night 22:00/06:00)
+- *Lden*  (is the level of noise day-evening-night and is an indicator
+correlated with the global nuisance produced by noise over the overall 24 hours)
+
+```{r eval=TRUE}
+data("exampleHourlyData")
+
+LdenCalculator(dataframe = exampleHourlyData, variable = "leq", type = "daily")
+
+LdenCalculator(dataframe = exampleHourlyData, variable = "leq", type = "total")
+```
+
+#### dbsum
+
+Function calculate energetic sum or difference of values
+
+```{r eval=TRUE, warning=FALSE}
+dbsum(x = 55, y = 33, operator = 1)
+dbsum(x = c(55 , 66), y = c(45, 50), operator = 1)
+
+dbsum(x = c(70 , 68), y = c(55, 66), operator = -1)
+```
+
+#### SELcalc
+
+Function calculate SEL (single event level)
+
+```{r eval=TRUE, warning=FALSE}
+SELcalc(x = 66.8, t = 938)
+```
+
+### Plot functions (time history and Running Leq, spectrogram, quantile plot)
+
+```{r TH, eval=TRUE}
+PlotNoiseTimeHistory(df = PTFA, variable = "LAeq", mp = "PTFA", y_lim = c(40, 60))
+```
+
+*PlotNoiseTHcompare* function shows Leq's time history with frequency components
+
+```{r TH_compare, eval=TRUE}
+PlotNoiseTHcompare(df = PTFA, 
+                   variable = "LAeq", 
+                   listvar = c("LZFmin.100",
+                               "LZFmin.40.0"),
+                   mp = "PTFA", 
+                   runleq = FALSE)
+```
+
+```{r spectrogram, eval=TRUE}
+PlotSpectrogram(PTFA, coLs = c(3:38), plot_title = "Spectrogram")
+```
+
+*AcousticQuantilePlot* function plot acoustic quantile aggregate by hour
+
+```{r AcousticQuantilePlot, eval=TRUE}
+library(lubridate)
+
+datasetI <- dataset_impulsive1
+datasetH <- dfImpulsiveTrasform(datasetI)
+datasetH$date <- ymd_hms(as.character(datasetH$date))
+
+AcousticQuantilePlot(df = datasetH, Cols =c(3:38), Quantile =0.95,
+                     TimeZone = "UTC")
+```
+
+### Search tone
+
+This function search tonal components in acoustic measure in according of Italian law.
+
+```{r search_tone, eval=TRUE}
+search.tone(PTFA[, c(3:38)], statistic = energetic.mean, plot.tone = T)
+```
+
+### Impulsive finder
+
+This function search impulsive events in acoustic measure
+
+```{r ImpulsiveFinder, eval=TRUE}
+data("dataset_impulsive2")
+results <- searchImpulse(dataset_impulsive2)
+results$dfPeaks
+results$Plot
+```
+
+#### Transform dataset from 100 ms data acquisition to 1 s data acquisition
+
+```{r eval=TRUE}
+data("dataset_impulsive2")
+head(dataset_impulsive2, 3)[, 1:5]
+dfT <- dfImpulsiveTrasform(dfImpulsive = dataset_impulsive2, 
+                           statistic = energetic.mean)
+head(dfT, 3)[, 1:5]
+```
+
+### Calculation of the intrusiveness index
+
+```{r eval=TRUE}
+library(OpeNoise)
+library(lubridate)
+
+data("dataset_impulsive1")
+data("dfBW")
+
+# dataset handling
+df_Imp_sec <- dfImpulsiveTrasform(dataset_impulsive1,
+                                  statistic = energetic.mean)
+df_Imp_sec$date <- ymd_hms(df_Imp_sec$date, tz = "Europe/Rome")
+
+# extraction of frequency bands from the dataset
+freqDF <- df_Imp_sec[, grep("LZeq\\.", names(df_Imp_sec))]
+
+################################################################################
+#                  INTRUSIVENESS INDEX CALCULATION FUNCTION
+################################################################################
+dfa <- freqDF # Environmental dataset simulation
+dfr <- freqDF
+
+# Residual dataset simulation by subtracting 4 from dfa
+dfr[c(5,8,12,15), ] <- dfr[c(5,8,12,15), ] - 4
+
+BW <- dfBW$BW # bandwidth
+
+# application of the function
+IntrusiveIndex(dfa, dfr, BW)
+```

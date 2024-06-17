@@ -19,7 +19,7 @@ Returns a number rounded to the nearest specified multiple.
 \examples{
 #data("P1FA")
 
-RoundTo(x = P1FA$LAeq, multiple = 0.5)
+RoundTo(x = P1FA$LAeq, multiple = 0.5)[1:10]
 }
 \author{
 Andri Signorell \email{andri@signorell.net}

@@ -19,7 +19,7 @@ Returns a dataframe (1s samples)
 #data("dataset_impulsive2")
 
 dfImpulsiveTrasform(dfImpulsive = dataset_impulsive1,
-                    statistic = energetic.mean)
+                    statistic = energetic.mean)[1:5, ]
 }
 \author{
 Pasquale Scordino \email{p.scordino@arpa.piemonte.it}

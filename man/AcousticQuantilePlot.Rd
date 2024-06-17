@@ -4,7 +4,7 @@
 \alias{AcousticQuantilePlot}
 \title{Plot acoustic quantile}
 \usage{
-AcousticQuantilePlot(df, Cols, Quantile, TimeZone)
+AcousticQuantilePlot(df, Cols, Quantile, TimeZone = "UTC")
 }
 \arguments{
 \item{df}{is a dataframe}
@@ -13,7 +13,7 @@ AcousticQuantilePlot(df, Cols, Quantile, TimeZone)
 
 \item{Quantile}{quantile, for example 0.95}
 
-\item{TimeZone}{Time zone of dataset}
+\item{TimeZone}{Time zone dataset (default is UTC)}
 }
 \description{
 Returns a plot of acoustic qualtile of 1/3 band frequency
@@ -21,9 +21,13 @@ Returns a plot of acoustic qualtile of 1/3 band frequency
 \examples{
 # Plot reverse quantile of 1/3 band frequency
 
-#data(dataset_impulsive1)
+library(lubridate)
 
-AcousticQuantilePlot(df = dataset_impulsive1, Cols =c(7:42), Quantile =0.95,
+datasetI <- dataset_impulsive1
+datasetH <- dfImpulsiveTrasform(datasetI)
+datasetH$date <- ymd_hms(as.character(datasetH$date))
+
+AcousticQuantilePlot(df = datasetH, Cols =c(3:38), Quantile = 0.95,
                      TimeZone = "UTC")
 }
 \author{

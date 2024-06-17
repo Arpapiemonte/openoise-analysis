@@ -1,9 +1,0 @@
-^.*\.Rproj$
-^\.Rproj\.user$
-^.lintr
-^LICENSE\.md$
-^README.Rmd
-^_pkgdown\.yml$
-^pkgdown$
-^docs$
-^LICENSE\.md$

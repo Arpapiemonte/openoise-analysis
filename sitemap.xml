@@ -1,135 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/articles/NEWS.html</loc>
-  </url>
-  <url>
-    <loc>/articles/OpeNoise-vignette.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/AcousticQuantilePlot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/AcousticWeightingTable.html</loc>
-  </url>
-  <url>
-    <loc>/reference/AcuDNPercentile.html</loc>
-  </url>
-  <url>
-    <loc>/reference/AcuPercentile.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ExtractIndexMark.html</loc>
-  </url>
-  <url>
-    <loc>/reference/HolidaysDate.html</loc>
-  </url>
-  <url>
-    <loc>/reference/HourlyEmean.html</loc>
-  </url>
-  <url>
-    <loc>/reference/IntrusiveIndex.html</loc>
-  </url>
-  <url>
-    <loc>/reference/LdenCalculator.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Maskapply.html</loc>
-  </url>
-  <url>
-    <loc>/reference/P1FA.html</loc>
-  </url>
-  <url>
-    <loc>/reference/P1FC.html</loc>
-  </url>
-  <url>
-    <loc>/reference/PTFA.html</loc>
-  </url>
-  <url>
-    <loc>/reference/PTFC.html</loc>
-  </url>
-  <url>
-    <loc>/reference/PlotNoiseTHcompare.html</loc>
-  </url>
-  <url>
-    <loc>/reference/PlotNoiseTimeHistory.html</loc>
-  </url>
-  <url>
-    <loc>/reference/PlotSpectrogram.html</loc>
-  </url>
-  <url>
-    <loc>/reference/RoundTo.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SELcalc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/avr.day.night.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dataset_impulsive1.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dataset_impulsive2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dbsum.html</loc>
-  </url>
-  <url>
-    <loc>/reference/deco.time.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dfBW.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dfImpulsiveTrasform.html</loc>
-  </url>
-  <url>
-    <loc>/reference/energetic.mean.html</loc>
-  </url>
-  <url>
-    <loc>/reference/energetic.min.html</loc>
-  </url>
-  <url>
-    <loc>/reference/energetic_w.mean.html</loc>
-  </url>
-  <url>
-    <loc>/reference/exampleHourlyData.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/iso.html</loc>
-  </url>
-  <url>
-    <loc>/reference/markers.html</loc>
-  </url>
-  <url>
-    <loc>/reference/runningLeq.html</loc>
-  </url>
-  <url>
-    <loc>/reference/search.tone.html</loc>
-  </url>
-  <url>
-    <loc>/reference/searchImpulse.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/404.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/LICENSE.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/articles/NEWS.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/articles/OpeNoise-vignette.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/articles/index.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/authors.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/index.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/news/index.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/AcousticQuantilePlot.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/AcousticWeightingTable.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/AcuDNPercentile.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/AcuPercentile.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/ExtractIndexMark.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/HolidaysDate.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/HourlyEmean.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/IntrusiveIndex.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/LdenCalculator.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/Maskapply.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/P1FA.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/P1FC.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/PTFA.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/PTFC.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/PlotNoiseTHcompare.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/PlotNoiseTimeHistory.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/PlotSpectrogram.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/RoundTo.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/SELcalc.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/avr.day.night.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/dataset_impulsive1.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/dataset_impulsive2.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/dbsum.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/deco.time.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/dfBW.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/dfImpulsiveTrasform.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/energetic.mean.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/energetic.min.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/energetic_w.mean.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/exampleHourlyData.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/index.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/iso.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/markers.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/runningLeq.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/search.tone.html</loc></url>
+<url><loc>https://arpapiemonte.github.io/openoise-analysis/reference/searchImpulse.html</loc></url>
 </urlset>
+

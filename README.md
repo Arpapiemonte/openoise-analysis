@@ -4,7 +4,7 @@
 # OpeNoise: noise pollution data analysis <img src="man/figures/logo.png" align="right" height="139" alt="" />
 
 <!-- badges: start -->
-   
+
 [![CRAN
 status](https://www.r-pkg.org/badges/version/OpeNoise)](https://cran.r-project.org/package=OpeNoise)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/OpeNoise)

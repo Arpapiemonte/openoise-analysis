@@ -1,4 +1,9 @@
-# OpeNoise 0.2-17 (development version) 
+# OpeNoise 0.2-18 (development version) 
+
+### New features
+* update description file
+
+# OpeNoise 0.2-17
 
 ### New features
 * add new documentations

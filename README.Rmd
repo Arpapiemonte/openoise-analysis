@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/OpeNoise)](https://cran.r-project.org/package=OpeNoise)
-[![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/OpeNoise)](https://cran.r-project.org/package=OpeNoise)
+![](http://cranlogs.r-pkg.org/badges/grand-total/OpeNoise)
 <!-- badges: end -->
 
 

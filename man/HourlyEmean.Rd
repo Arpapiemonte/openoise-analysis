@@ -13,6 +13,9 @@ HourlyEmean(df, variable, timeZone = "Europe/Rome")
 
 \item{timeZone}{is time zone defoult is Europe/Rome}
 }
+\value{
+dataframe of hourly energetic mean values
+}
 \description{
 Returns a dataframe with hourly energetic mean
 }

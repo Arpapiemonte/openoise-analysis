@@ -7,9 +7,12 @@
 dfImpulsiveTrasform(dfImpulsive, statistic = energetic.mean)
 }
 \arguments{
-\item{dfImpulsive}{is a dataframe for impulse}
+\item{dfImpulsive}{is a dataframe for impulse (data acquired at 100 ms)}
 
 \item{statistic}{is energetic mean (default)}
+}
+\value{
+dataframe
 }
 \description{
 Returns a dataframe (1s samples)

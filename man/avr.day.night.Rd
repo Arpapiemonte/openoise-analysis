@@ -17,6 +17,9 @@ avr.day.night(x, variable, period = "day", stat = "n_mean", ...)
 
 \item{...}{another arguments}
 }
+\value{
+dataframe of energetic mean values by night or daily period
+}
 \description{
 Returns a dataframe with energetic mean
 }

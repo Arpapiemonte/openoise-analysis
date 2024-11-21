@@ -9,9 +9,12 @@ RoundTo(x, multiple = 1, FUN = round)
 \arguments{
 \item{x}{is a vector of value in decibel (dB)}
 
-\item{multiple}{is a vector of time in seconds}
+\item{multiple}{numeric. The multiple to which the number is to be rounded. Default is 1.}
 
 \item{FUN}{the rounding function as character or as expression. Can be one out of trunc, ceiling, round (default) or floor.}
+}
+\value{
+value or vector of values rounded
 }
 \description{
 Returns a number rounded to the nearest specified multiple.

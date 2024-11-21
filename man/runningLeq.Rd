@@ -7,7 +7,10 @@
 runningLeq(x)
 }
 \arguments{
-\item{x}{is a vector of value in decibel (dB)}
+\item{x}{is a vector of values in decibel (dB)}
+}
+\value{
+vector of mobile energetic average values
 }
 \description{
 Returns a vector of energetic mean of Leq......

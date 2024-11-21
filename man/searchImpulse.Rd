@@ -15,6 +15,9 @@ searchImpulse(df, cri1 = 6, cri2 = -10, Threshold = 30)
 
 \item{Threshold}{is minimun level for detect peaks}
 }
+\value{
+list contain a dataframe of peaks values and a plot of it
+}
 \description{
 Returns a list with dataframe of peaks impulsive and a plot
 }

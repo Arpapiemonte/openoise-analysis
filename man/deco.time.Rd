@@ -4,7 +4,7 @@
 \alias{deco.time}
 \title{Time decomposition}
 \usage{
-deco.time(x, y, z)
+deco.time(x, y, z, verbose = TRUE)
 }
 \arguments{
 \item{x}{are hours}
@@ -12,6 +12,8 @@ deco.time(x, y, z)
 \item{y}{are minutes}
 
 \item{z}{are seconds}
+
+\item{verbose}{logic argument that on or off message (default is TRUE)}
 }
 \value{
 time decomposition in seconds

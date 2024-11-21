@@ -26,6 +26,9 @@ PlotNoiseTimeHistory(
 
 \item{y_lim}{y axes range}
 }
+\value{
+ggplot object
+}
 \description{
 Returns a time history plot
 }

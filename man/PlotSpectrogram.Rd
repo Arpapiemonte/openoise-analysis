@@ -13,6 +13,9 @@ PlotSpectrogram(df, coLs, plot_title = NULL)
 
 \item{plot_title}{is title of plot}
 }
+\value{
+ggplot object
+}
 \description{
 Returns a spectrogram
 }

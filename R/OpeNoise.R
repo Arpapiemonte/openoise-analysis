@@ -107,6 +107,7 @@ NULL
 #'
 #' calculate min value
 #' @param y is a numeric vector
+#' @return energetic min vector value
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @export
@@ -383,16 +384,19 @@ search.tone <- function(x, statistic = energetic.mean, plot.tone = FALSE) {
 #' @param x  are hours
 #' @param y  are minutes
 #' @param z  are seconds
+#' @param verbose logic argument that on or off message (default is TRUE)
 #' @return time decomposition in seconds
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/deco.time_ex.R
 #' @export
-deco.time <-function(x,y,z) {
+deco.time <-function(x,y,z, verbose = TRUE) {
   H <- x*60*60
   M <- y*60
   S <- z
-  print("Time decomposition from hours, minutes and seconds to seconds:")
+  if (verbose) {
+    print("Time decomposition from hours, minutes and seconds to seconds:")
+  }
   res <- H+M+S
   return(res)
 }
@@ -439,8 +443,9 @@ energetic_w.mean <- function(x, t) {
 #'
 #' Returns a number rounded to the nearest specified multiple.
 #' @param x  is a vector of value in decibel (dB)
-#' @param multiple  is a vector of time in seconds
+#' @param multiple  numeric. The multiple to which the number is to be rounded. Default is 1.
 #' @param FUN the rounding function as character or as expression. Can be one out of trunc, ceiling, round (default) or floor.
+#' @return value or vector of values rounded
 #' @author Andri Signorell \email{andri@signorell.net}
 #' @example inst/examples/RoundTo_ex.R
 #' @export
@@ -458,7 +463,8 @@ RoundTo <- function (x, multiple = 1, FUN = round)
 #' Calculate running Leq
 #'
 #' Returns a vector of energetic mean of Leq......
-#' @param x  is a vector of value in decibel (dB)
+#' @param x  is a vector of values in decibel (dB)
+#' @return vector of mobile energetic average values
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/runningLeq_ex.R
@@ -479,6 +485,7 @@ runningLeq <- function(x) {
 #' @param filemarks  is a dataframe with date and markers
 #' @param mp  is a name of misure point
 #' @param dataset is dataframe in analysis
+#' @return list of index and names
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/ExtractIndexMark_ex.R
@@ -511,6 +518,7 @@ ExtractIndexMark <- function(filemarks, dataset, mp) {
 #' @param filemarks  is a dataframe with date and markers
 #' @param mp  is a name of misure point
 #' @param dataset is dataframe in analysis
+#' @return dataframe with add marker column
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/Maskapply_ex.R
@@ -535,6 +543,7 @@ Maskapply <- function(filemarks, dataset, mp) {
 #' @param escl_marks is mark that you want esclude in plot
 #' @param mp  is a name of misure point
 #' @param y_lim y axes range
+#' @return ggplot object
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/PlotNoiseTimeHistory_ex.R
@@ -601,8 +610,9 @@ PlotNoiseTimeHistory <- function (df = NULL, variable = NULL, filemarks = NULL,
 
 #' Calculate reverse Percentile
 #'
-#' Returns a vector of acoustic percetile
+#' Returns a vector of acoustic percentile
 #' @param x  is a vector with Leq data
+#' @return vector of acoustic percentil values
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/AcuPercentile_ex.R
@@ -624,6 +634,7 @@ AcuPercentile  <- function(x) {
 #' @param from is start hour
 #' @param to is end hour
 #' @param period is a period night or day
+#' @return a list of acoustic percentil values by night and daily period
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/AcuDNPercentile_ex.R
@@ -665,6 +676,7 @@ AcuDNPercentile <- function(df, parameter, from, to, period) {
 #' @param df  is a dataframe with date (Y-m-d H:M:S) and variables
 #' @param variable  is a variable name
 #' @param timeZone is time zone defoult is Europe/Rome
+#' @return dataframe of hourly energetic mean values
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/HourlyEmean_ex.R
@@ -687,6 +699,7 @@ HourlyEmean <- function(df, variable, timeZone = "Europe/Rome") {
 #'
 #' Returns a vector of holiday dates (Gregorian calendar)
 #' @param year_holiday  is year example "2022" like character
+#' @return string vector of date
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/HolidaysDate_ex.R
@@ -762,6 +775,7 @@ HolidaysDate <- function(year_holiday){
 #' @param period is "day" or "night"
 #' @param stat is "n_mean" or "e_mean" like mean and energetic mean
 #' @param ... another arguments
+#' @return dataframe of energetic mean values by night or daily period
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/avr.day.night_ex.R
@@ -978,13 +992,14 @@ avr.day.night <- function(x,
   }
 }
 
-#' Calculate daily or total Lden
+#' Calculate daily or total Lden (Day-evening-night level)
 #'
 #' Returns a dataframe with Lden
 #' @param dataframe  is a dataframe
 #' @param variable is name of variable
 #' @param type is "daily" or "total"
 #' @param ... is another arguments
+#' @return dataframe with Lden values
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/LdenCalculator_ex.R
@@ -1134,6 +1149,7 @@ LdenCalculator <-
 #' @param df  is a dataframe
 #' @param coLs is cols index to plot
 #' @param plot_title is title of plot
+#' @return ggplot object
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/PlotSpectrogram_ex.R
@@ -1233,7 +1249,7 @@ PlotSpectrogram <- function (df, coLs, plot_title = NULL)
   return(spec)
 }
 
-#' Plot time histrory and compare frequency components
+#' Plot time history and compare frequency components
 #'
 #' Returns a plot
 #' @param df  is a dataframe
@@ -1242,6 +1258,7 @@ PlotSpectrogram <- function (df, coLs, plot_title = NULL)
 #' @param mp is a misure point
 #' @param runleq is logical value that plot running leq line
 #' @param y_lim y axe range
+#' @return ggplot object
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/PlotNoiseTHcompare_ex.R
@@ -1308,6 +1325,7 @@ PlotNoiseTHcompare <- function (df, variable, listvar = NULL, mp, runleq = TRUE,
 #' @param cri1 is first criteria 6dB (LAImax - LASmax > 6dB)
 #' @param cri2 is second criteria -10dB ((LAFmax - 10dB) < 1s)
 #' @param Threshold is minimun level for detect peaks
+#' @return list contain a dataframe of peaks values and a plot of it
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/searchImpulse_ex.R
@@ -1369,8 +1387,9 @@ searchImpulse <- function(df, cri1 = 6, cri2 = -10, Threshold = 30) {
 #' Trasform impulsive dataframe (100 ms samples) in dataframe (1s samples)
 #'
 #' Returns a dataframe (1s samples)
-#' @param dfImpulsive  is a dataframe for impulse
+#' @param dfImpulsive  is a dataframe for impulse (data acquired at 100 ms)
 #' @param statistic is energetic mean (default)
+#' @return dataframe
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/dfImpulsiveTrasform_ex.R
@@ -1379,15 +1398,28 @@ searchImpulse <- function(df, cri1 = 6, cri2 = -10, Threshold = 30) {
 dfImpulsiveTrasform <- function(dfImpulsive, statistic = energetic.mean) {
   df <- dfImpulsive
   df <- df[, -c(3:6)]
-  df$date <- ymd_hms(df$date, tz = "Europe/Rome")
-  df_min <- as.data.frame(as.table(tapply(df$LAeq, df$date, statistic)))
+  df$date <- trunc(ymd_hms(df$date, tz = "UTC"))
+  df_min <- as.data.frame(as.table(tapply(df$LAeq, list(second(df$date),
+                                                        minute(df$date),
+                                                        hour(df$date),
+                                                        as.Date(df$date)),
+                                          statistic)))
+  df_min <- na.omit(df_min)
+  df_min$date <- ymd_hms(paste0(df_min$Var4, " ",df_min$Var3, ":", df_min$Var2,
+                                ":", df_min$Var1))
+  df_min <- df_min[, c(6, 5)]
   names(df_min) <- c("date", "LAeq")
+
   for (i in names(df)[3:length(names(df))]) {
-    df_min[[i]] <- as.data.frame(as.table(tapply(df[[i]], df$date, statistic)))$Freq
+    df_min[[i]] <- na.omit(as.data.frame(as.table(tapply(df[[i]], list(second(df$date),
+                                                          minute(df$date),
+                                                          hour(df$date),
+                                                          as.Date(df$date)),
+                                            statistic)))$Freq)
   }
+
   return(df_min)
 }
-
 
 #' Calculate Intrusive Index (UNI/TS 11844 march 2022)
 #'
@@ -1395,6 +1427,7 @@ dfImpulsiveTrasform <- function(dfImpulsive, statistic = energetic.mean) {
 #' @param dfa  is a dataframe Lfa (enviromental sound levels) 1/3 octave specta data
 #' @param dfr  is a dataframe Lfr (residual sound levels) 1/3 octave specta data
 #' @param BW   a vector of 1/3 octave bandwidth data
+#' @return string of intrusive index
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/IntrusiveIndex_ex.R
@@ -1453,11 +1486,12 @@ IntrusiveIndex <- function(dfa, dfr, BW) {
 
 #' Plot acoustic quantile
 #'
-#' Returns a plot of acoustic qualtile of 1/3 band frequency
+#' Returns a plot of acoustic quantile of 1/3 band frequency
 #' @param df  is a dataframe
 #' @param Cols vector of index cols (1/3 band frequency)
 #' @param Quantile quantile, for example 0.95
 #' @param TimeZone Time zone dataset (default is UTC)
+#' @return an OpeNoise object of class ggplot
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/AcousticQuantilePlot_ex.R
@@ -1511,6 +1545,7 @@ AcousticQuantilePlot <- function(df, Cols, Quantile, TimeZone = "UTC") {
 #' @param x is first value or vector
 #' @param y is second value or vector
 #' @param operator is 1 for sum and -1 for difference
+#' @return vector of values contain energetic sum or difference
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/dbsum_ex.R
@@ -1527,6 +1562,7 @@ dbsum <- function(x, y, operator) {
 #' Returns SEL
 #' @param x is value in dB
 #' @param t is period in second
+#' @return value of cumulative energy in 1 second
 #' @author Pasquale Scordino \email{p.scordino@@arpa.piemonte.it}
 #' @author Simone Sperotto \email{s.sperotto@@arpa.piemonte.it}
 #' @example inst/examples/SELcalc_ex.R

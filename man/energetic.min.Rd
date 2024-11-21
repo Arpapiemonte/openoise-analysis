@@ -9,6 +9,9 @@ energetic.min(y)
 \arguments{
 \item{y}{is a numeric vector}
 }
+\value{
+energetic min vector value
+}
 \description{
 calculate min value
 }

@@ -13,6 +13,9 @@ IntrusiveIndex(dfa, dfr, BW)
 
 \item{BW}{a vector of 1/3 octave bandwidth data}
 }
+\value{
+string of intrusive index
+}
 \description{
 Returns a number
 }

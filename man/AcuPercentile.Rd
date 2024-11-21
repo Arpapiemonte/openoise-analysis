@@ -9,8 +9,11 @@ AcuPercentile(x)
 \arguments{
 \item{x}{is a vector with Leq data}
 }
+\value{
+vector of acoustic percentil values
+}
 \description{
-Returns a vector of acoustic percetile
+Returns a vector of acoustic percentile
 }
 \examples{
 # Calculate reverse quantile of a vector of values

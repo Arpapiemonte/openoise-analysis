@@ -2,7 +2,7 @@
 % Please edit documentation in R/OpeNoise.R
 \name{LdenCalculator}
 \alias{LdenCalculator}
-\title{Calculate daily or total Lden}
+\title{Calculate daily or total Lden (Day-evening-night level)}
 \usage{
 LdenCalculator(dataframe, variable, type = "daily", ...)
 }
@@ -14,6 +14,9 @@ LdenCalculator(dataframe, variable, type = "daily", ...)
 \item{type}{is "daily" or "total"}
 
 \item{...}{is another arguments}
+}
+\value{
+dataframe with Lden values
 }
 \description{
 Returns a dataframe with Lden

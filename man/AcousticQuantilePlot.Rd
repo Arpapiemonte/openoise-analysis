@@ -15,8 +15,11 @@ AcousticQuantilePlot(df, Cols, Quantile, TimeZone = "UTC")
 
 \item{TimeZone}{Time zone dataset (default is UTC)}
 }
+\value{
+an OpeNoise object of class ggplot
+}
 \description{
-Returns a plot of acoustic qualtile of 1/3 band frequency
+Returns a plot of acoustic quantile of 1/3 band frequency
 }
 \examples{
 # Plot reverse quantile of 1/3 band frequency
@@ -25,7 +28,6 @@ library(lubridate)
 
 datasetI <- dataset_impulsive1
 datasetH <- dfImpulsiveTrasform(datasetI)
-datasetH$date <- ymd_hms(as.character(datasetH$date))
 
 AcousticQuantilePlot(df = datasetH, Cols =c(3:38), Quantile = 0.95,
                      TimeZone = "UTC")

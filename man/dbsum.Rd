@@ -13,6 +13,9 @@ dbsum(x, y, operator)
 
 \item{operator}{is 1 for sum and -1 for difference}
 }
+\value{
+vector of values contain energetic sum or difference
+}
 \description{
 Returns energetic sum or difference of values
 }

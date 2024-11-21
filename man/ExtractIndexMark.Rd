@@ -13,6 +13,9 @@ ExtractIndexMark(filemarks, dataset, mp)
 
 \item{mp}{is a name of misure point}
 }
+\value{
+list of index and names
+}
 \description{
 Returns a list of index and name
 }

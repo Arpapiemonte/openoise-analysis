@@ -13,6 +13,9 @@ Maskapply(filemarks, dataset, mp)
 
 \item{mp}{is a name of misure point}
 }
+\value{
+dataframe with add marker column
+}
 \description{
 Returns a dataframe
 }

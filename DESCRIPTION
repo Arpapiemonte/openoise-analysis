@@ -11,18 +11,16 @@ Authors@R: c(
  )
 Maintainer: Pasquale Scordino <scordino.pasquale@gmail.com>
 Imports: tidyr, lubridate, ggplot2, pracma
-Description: This packages group several fuctions for data analysis of environmental noise pollution data.
+Description: Provides analyse, interpret and understand noise pollution data. Data are typically regular time series measured with sound meter. The package is partially described in Fogola, Grasso, Masera and Scordino (2023, <DOI:10.61782/fa.2023.0063>).
 Depends: R (>= 3.5.0)
 License: GPL (>= 3)
-URL: https://arpapiemonte.github.io/openoise-analysis, https://github.com/Arpapiemonte/openoise-analysis
-BugReports: https://github.com/Arpapiemonte/openoise-analysis/issues
+URL: https://arpapiemonte.github.io/openoise-analysis/, https://github.com/Arpapiemonte/openoise-analysis/
+BugReports: https://github.com/Arpapiemonte/openoise-analysis/issues/
 Encoding: UTF-8
 LazyData: TRUE
 RoxygenNote: 7.3.2
-Suggests: 
-    knitr,
+Suggests:
     rmarkdown,
     htmltools,
     testthat (>= 3.0.0)
-VignetteBuilder: knitr
 Config/testthat/edition: 3

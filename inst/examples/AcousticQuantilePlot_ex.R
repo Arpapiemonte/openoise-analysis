@@ -4,7 +4,6 @@ library(lubridate)
 
 datasetI <- dataset_impulsive1
 datasetH <- dfImpulsiveTrasform(datasetI)
-datasetH$date <- ymd_hms(as.character(datasetH$date))
 
 AcousticQuantilePlot(df = datasetH, Cols =c(3:38), Quantile = 0.95,
                      TimeZone = "UTC")

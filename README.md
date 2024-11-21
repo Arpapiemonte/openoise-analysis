@@ -7,7 +7,8 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/OpeNoise)](https://cran.r-project.org/package=OpeNoise)
-![](http://cranlogs.r-pkg.org/badges/grand-total/OpeNoise)
+[![CRAN
+downloads](http://cranlogs.r-pkg.org/badges/grand-total/OpeNoise)](https://cran.r-project.org/package=OpeNoise)
 <!-- badges: end -->
 
 ### Installation
@@ -49,9 +50,6 @@ Function calculate energetic average of vector of values in dB.
 ``` r
 energetic.mean(PTFA$LAeq)
 #> [1] 45.7
-```
-
-``` r
 
 x <- energetic.mean(PTFA$LAeq)
 
@@ -77,9 +75,6 @@ Function return reverse percentile of un vector’s values.
 AcuPercentile(PTFA$LAeq)
 #>     L1     L5    L10    L50    L90    L95    L99 
 #> 53.747 48.600 47.200 44.400 43.100 43.000 42.700
-```
-
-``` r
 
 RoundTo(AcuPercentile(PTFA$LAeq), 0.5)
 #>   L1   L5  L10  L50  L90  L95  L99 
@@ -169,16 +164,13 @@ head(df_night, 5)
 #> 3 2020-12-13 56.5 46.3 61.5
 #> 4 2020-12-14 56.5 48.4 61.3
 #> 5 2020-12-15 56.9 48.6 62.4
-```
-
-``` r
 
 df_day <- avr.day.night(exampleHourlyData, variable = "leq", period = "day", 
               stat = "e_mean")
 
 head(df_day, 5)
 #>         DATA MEAN  MIN  MAX
-#> 1 2020-12-11 69.9 64.9 72.3
+#> 1 2020-12-11 69.9   NA   NA
 #> 2 2020-12-12 69.4 63.4 72.6
 #> 3 2020-12-13 69.0 60.2 72.1
 #> 4 2020-12-14 69.6 64.1 73.2
@@ -215,9 +207,6 @@ LdenCalculator(dataframe = exampleHourlyData, variable = "leq", type = "daily")
 #>  9 2020-12-19  69.1  69.4  66.1  56.6  68.9
 #> 10 2020-12-20  69.2  69.5  66.5  54.7  68.7
 #> # ℹ 71 more rows
-```
-
-``` r
 
 LdenCalculator(dataframe = exampleHourlyData, variable = "leq", type = "total")
 #> # A tibble: 1 × 4
@@ -233,14 +222,8 @@ Function calculate energetic sum or difference of values
 ``` r
 dbsum(x = 55, y = 33, operator = 1)
 #> [1] 55.02732
-```
-
-``` r
 dbsum(x = c(55 , 66), y = c(45, 50), operator = 1)
 #> [1] 55.41393 66.10774
-```
-
-``` r
 
 dbsum(x = c(70 , 68), y = c(55, 66), operator = -1)
 #> [1] 69.86045 63.67077
@@ -328,9 +311,6 @@ results$dfPeaks
 #> 8  90.2 1389      1387     1410 2022-05-06 14:28:33    y    5
 #> 9  88.8 2198      2197     2218 2022-05-06 14:29:54    y    4
 #> 10 86.7  939       936      959 2022-05-06 14:27:48    y    5
-```
-
-``` r
 results$Plot
 ```
 
@@ -345,16 +325,13 @@ head(dataset_impulsive2, 3)[, 1:5]
 #> 2 2022-05-06 14:26:14.600 34.8   40.4 34.5   34.8
 #> 3 2022-05-06 14:26:14.700 35.0   40.1 34.6   35.1
 #> 4 2022-05-06 14:26:14.800 37.0   39.8 35.7   36.2
-```
-
-``` r
 dfT <- dfImpulsiveTrasform(dfImpulsive = dataset_impulsive2, 
                            statistic = energetic.mean)
 head(dfT, 3)[, 1:5]
-#>                    date LAeq LZeq.6.3 LZeq.8.0 LZeq.10.0
-#> 1 2022-05-06 14:26:14.6 34.8     29.4     37.5      43.7
-#> 2 2022-05-06 14:26:14.7 35.0     31.5     34.9      38.5
-#> 3 2022-05-06 14:26:14.8 37.0     28.2     37.1      35.2
+#>                   date LAeq LZeq.6.3 LZeq.8.0 LZeq.10.0
+#> 15 2022-05-06 14:26:14 35.8     29.3     38.7      39.9
+#> 16 2022-05-06 14:26:15 34.9     35.0     40.2      41.0
+#> 17 2022-05-06 14:26:16 38.9     33.4     41.8      42.5
 ```
 
 ### Calculation of the intrusiveness index

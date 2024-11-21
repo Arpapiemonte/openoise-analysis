@@ -2,7 +2,7 @@
 % Please edit documentation in R/OpeNoise.R
 \name{PlotNoiseTHcompare}
 \alias{PlotNoiseTHcompare}
-\title{Plot time histrory and compare frequency components}
+\title{Plot time history and compare frequency components}
 \usage{
 PlotNoiseTHcompare(
   df,
@@ -25,6 +25,9 @@ PlotNoiseTHcompare(
 \item{runleq}{is logical value that plot running leq line}
 
 \item{y_lim}{y axe range}
+}
+\value{
+ggplot object
 }
 \description{
 Returns a plot

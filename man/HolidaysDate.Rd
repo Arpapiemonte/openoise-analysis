@@ -9,6 +9,9 @@ HolidaysDate(year_holiday)
 \arguments{
 \item{year_holiday}{is year example "2022" like character}
 }
+\value{
+string vector of date
+}
 \description{
 Returns a vector of holiday dates (Gregorian calendar)
 }

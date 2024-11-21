@@ -11,6 +11,9 @@ SELcalc(x, t)
 
 \item{t}{is period in second}
 }
+\value{
+value of cumulative energy in 1 second
+}
 \description{
 Returns SEL
 }

@@ -17,6 +17,9 @@ AcuDNPercentile(df, parameter, from, to, period)
 
 \item{period}{is a period night or day}
 }
+\value{
+a list of acoustic percentil values by night and daily period
+}
 \description{
 Returns a vector of acoustic percetile
 }

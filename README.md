@@ -7,7 +7,8 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/OpeNoise)](https://cran.r-project.org/package=OpeNoise)
-![](http://cranlogs.r-pkg.org/badges/grand-total/OpeNoise)
+[![metacran
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/OpeNoise)](https://cran.r-project.org/package=OpeNoise)
 <!-- badges: end -->
 
 ### Installation
